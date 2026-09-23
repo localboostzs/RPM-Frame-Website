@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="RPM_Frame — hochwertige Automotive Photography & Videography für Autos und Motorräder aus der Zentralschweiz.">
+  <title>RPM_Frame — Automotive Photography</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23404040'/%3E%3Cpath d='M13 46V18h18c9 0 14 5 14 13 0 5-2 9-7 11l12 4H35l-10-4h-4v4H13zm8-12h9c4 0 6-2 6-5s-2-5-6-5h-9v10z' fill='%23f5f5f5'/%3E%3C/svg%3E">
+  <style>
+    :root{--ink:#f5f5f5;--alt:#ebebea;--card:#fff;--line:rgba(64,64,64,.18);--muted:#6a6a6c;--accent:#404040;--text:#2b2b2c;--on-accent:#f5f5f5}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--ink);color:var(--text);font:16px/1.55 Arial,Helvetica,sans-serif;-webkit-text-size-adjust:100%}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    .mono{font:500 .72rem/1 "Courier New",monospace;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+
+    /* Nav */
+    .nav{height:82px;display:flex;align-items:center;justify-content:space-between;padding:0 5.5vw;position:fixed;top:0;z-index:10;width:100%;border-bottom:1px solid var(--line);background:rgba(245,245,245,.9);backdrop-filter:blur(12px)}
+    .brand-logo{height:50px;width:auto;}
+    .links{display:flex;gap:25px;font-size:.76rem;font-weight:600}
+    .links a:hover{opacity:.6}
+    .nav-cta{border:1px solid var(--accent);padding:10px 16px;color:var(--accent);font-size:.72rem;font-weight:700}
+    .nav-cta:hover{background:var(--accent);color:var(--on-accent)}
+
+    /* Buttons */
+    .button{display:inline-flex;align-items:center;gap:16px;background:var(--accent);color:var(--on-accent);padding:15px 21px;font-weight:800;font-size:.82rem;border:0;cursor:pointer;font-family:inherit}
+    .button b{font-size:1.2rem;line-height:0}
+    .button:hover{filter:brightness(1.1)}
+
+    /* Hero */
+    .hero{min-height:720px;height:100vh;position:relative;display:flex;align-items:flex-end;padding:0 5.5vw 8vw;overflow:hidden}
+    .hero:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(245,245,245,.93) 0%,rgba(245,245,245,.6) 45%,rgba(245,245,245,.05) 100%),linear-gradient(0deg,var(--ink) 0%,transparent 38%)}
+    .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+    .hero-content{z-index:1;max-width:800px;color:#2b2b2c}
+    .hero h1{font-size:clamp(3.1rem,8vw,7.2rem);line-height:.93;letter-spacing:-.075em;margin:20px 0 24px;font-weight:800}
+    .hero h1 span{color:#6a6a6c}
+    .hero p{max-width:440px;color:#3c3c3d;font-size:1.03rem;margin:0 0 32px}
+    .scroll{position:absolute;right:5.5vw;bottom:8vw;z-index:1;writing-mode:vertical-rl;color:#404040}
+
+    /* Sections */
+    .section{padding:125px 5.5vw}
+    .eyebrow{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:42px}
+    .eyebrow h2{font-size:clamp(2.2rem,4vw,4.3rem);letter-spacing:-.065em;line-height:1;margin:12px 0 0}
+    .eyebrow p{max-width:340px;color:var(--muted);margin:0}
+    .alt{background:var(--alt)}
+
+    /* Problem */
+    .problem{display:grid;grid-template-columns:1fr 1.3fr;gap:9vw;align-items:start}
+    .problem h2{font-size:clamp(2.5rem,5vw,5.2rem);line-height:.94;letter-spacing:-.07em;margin:15px 0}
+    .problem h2 span{color:#6a6a6c}
+    .problem-copy{padding-top:26px}
+    .problem-copy p{color:#4a4a4b;font-size:1.12rem;max-width:580px;margin:0 0 20px}
+    .pain{list-style:none;padding:0;margin:30px 0 0;max-width:580px}
+    .pain li{padding:14px 0 14px 34px;border-top:1px solid var(--line);position:relative;color:#2b2b2c}
+    .pain li:before{content:'×';position:absolute;left:0;top:11px;color:var(--accent);font-size:1.3rem;line-height:1.3}
+
+    /* Lösung */
+    .solution{background:var(--alt)}
+    .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .feat{border:1px solid var(--line);padding:31px;background:var(--card)}
+    .feat .num{font:500 .76rem "Courier New",monospace;color:var(--accent)}
+    .feat h3{font-size:1.3rem;margin:22px 0 10px;letter-spacing:-.04em}
+    .feat p{margin:0;color:var(--muted);font-size:.95rem}
+
+    /* Karussell */
+    .carousel{position:relative}
+    .viewport{overflow:hidden;touch-action:pan-y}
+    .track{display:flex;gap:14px;transition:transform .6s cubic-bezier(.22,.7,.2,1);will-change:transform}
+    .slide{flex:0 0 calc((100% - 28px)/3);aspect-ratio:3/4;overflow:hidden;background:#ddd;margin:0;user-select:none}
+    .slide img{width:100%;height:100%;object-fit:cover;filter:saturate(.9) contrast(1.06);transition:transform .7s ease;-webkit-user-drag:none}
+    .slide:hover img{transform:scale(1.05)}
+    .arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:52px;height:52px;border-radius:50%;border:1px solid var(--line);background:rgba(245,245,245,.85);backdrop-filter:blur(8px);color:var(--accent);font-size:1.3rem;cursor:pointer;display:grid;place-items:center}
+    .arrow:hover{background:var(--accent);color:var(--on-accent)}
+    .arrow.prev{left:14px}.arrow.next{right:14px}
+    .arrow:disabled{opacity:.3;cursor:default}
+    .dots{display:flex;justify-content:center;gap:10px;margin-top:26px}
+    .dot{width:10px;height:10px;border-radius:50%;border:0;padding:0;background:rgba(64,64,64,.25);cursor:pointer}
+    .dot[aria-current="true"]{background:var(--accent);transform:scale(1.25)}
+
+    /* Angebot */
+    .pricing{background:var(--ink)}
+    .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .price-card{border:1px solid var(--line);padding:31px;min-height:335px;background:var(--card);display:flex;flex-direction:column}
+    .price-card.featured{border-color:var(--accent);background:linear-gradient(145deg,#e3e3e2,#fff)}
+    .price-card h3{font-size:1.35rem;margin:14px 0 22px;letter-spacing:-.04em}
+    .price-card ul{list-style:none;padding:0;margin:0}
+    .price-card li{padding:11px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;font-size:.88rem}
+    .price-card li b{color:var(--accent);font-family:"Courier New",monospace;font-size:.78rem;white-space:nowrap}
+
+    /* CTA */
+    .contact{background:var(--alt);display:grid;grid-template-columns:.8fr 1.2fr;gap:9vw}
+    .contact h2{font-size:clamp(2.7rem,5vw,5.5rem);line-height:.91;letter-spacing:-.075em;margin:13px 0}
+    .contact p{color:var(--muted);max-width:340px}
+    .form{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-content:start}
+    .field{display:grid;gap:8px}
+    .field.full{grid-column:span 2}
+    .field label{font:500 .69rem "Courier New",monospace;letter-spacing:.12em;text-transform:uppercase;color:#5a5a5c}
+    .field input,.field textarea{color:var(--text);background:transparent;border:0;border-bottom:1px solid #9a9a9c;padding:11px 0;font:inherit;outline:none;border-radius:0}
+    .field textarea{height:110px;resize:vertical}
+    .field input:focus,.field textarea:focus{border-color:var(--accent)}
+    .field input::placeholder,.field textarea::placeholder{color:#8c8c8e}
+    .submit{margin-top:10px}
+
+    footer{padding:36px 5.5vw 45px;display:flex;justify-content:space-between;align-items:flex-end;background:#404040;color:#cfcfd0;font-size:.8rem}
+    footer .mono{color:#e6e6e6}
+    footer .brand-logo{background:#f5f5f5;padding:4px 8px}
+    footer p{margin:12px 0 0}
+
+    @media(max-width:1000px){.slide{flex-basis:calc((100% - 14px)/2)}.feat-grid,.price-grid{grid-template-columns:1fr}.price-card{min-height:auto}}
+    @media(max-width:800px){
+      .nav{height:68px;padding:0 6vw}.brand-logo{height:42px}.links{display:none}
+      .hero{min-height:640px;padding:0 6vw 16vw}.scroll{display:none}
+      .section{padding:82px 6vw}
+      .eyebrow{display:block}.eyebrow p{margin-top:22px}
+      .problem,.contact{grid-template-columns:1fr;gap:16px}.contact{gap:36px}
+      .slide{flex-basis:86%}.arrow{display:none}
+      .form{grid-template-columns:1fr}.field.full{grid-column:auto}
+      footer{padding-left:6vw;padding-right:6vw;display:block}footer .mono{margin-top:20px}
+      .hero h1{font-size:clamp(3.4rem,14vw,5.2rem)}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.track,.slide img{transition:none}}
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a class="logo" href="#home" aria-label="RPM Frame Startseite"><img class="brand-logo" src="assets/images/logo-rpm-frame.jpg" alt="RPM Frame" width="87" height="50"></a>
+    <div class="links"><a href="#home">Home</a><a href="#loesung">Leistungen</a><a href="#portfolio">Portfolio</a><a href="#angebot">Preise</a><a href="#anfrage">Kontakt</a></div>
+    <a class="nav-cta" href="#anfrage">ANFRAGEN ↗</a>
+  </nav>
+
+  <main>
+    <!-- 1 HERO -->
+    <section class="hero" id="home">
+      <img class="hero-img" src="assets/images/hero.webp" alt="Weisser Audi RS6 Avant vor moderner Architektur" fetchpriority="high">
+      <div class="hero-content">
+        <div class="mono">Automotive Photography & Videography · Zentralschweiz</div>
+        <h1>Built for the <span>drive.</span></h1>
+        <p>Starke Bilder und bewegte Inhalte für Autos und Motorräder, die mehr verdienen als einen Schnappschuss.</p>
+        <a class="button" href="#anfrage">SHOOTING ANFRAGEN <b>→</b></a>
+      </div>
+      <div class="scroll mono">SCROLL TO EXPLORE</div>
+    </section>
+
+    <!-- 2 PROBLEM -->
+    <section class="section problem" id="problem">
+      <div><div class="mono">01 / Die Ausgangslage</div><h2>Dein Fahrzeug verdient <span>mehr</span> als ein Handy-Foto.</h2></div>
+      <div class="problem-copy">
+        <p>Du hast Zeit, Geld und Herzblut in dein Auto oder Motorrad gesteckt. Und dann landet es als flaches Handy-Foto im Feed: schiefes Licht, störender Hintergrund, kein Charakter.</p>
+        <p>Auf Instagram, beim Verkauf oder für dich selbst: Der erste Eindruck zählt, und er entscheidet, ob dein Fahrzeug so wirkt, wie es wirklich ist.</p>
+        <ul class="pain">
+          <li>Bilder, die weder Form noch Lackqualität zeigen</li>
+          <li>Unruhige Hintergründe und schlechtes Licht</li>
+          <li>Kein Content, der im Feed wirklich stehen bleibt</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 3 LÖSUNG -->
+    <section class="section solution" id="loesung">
+      <div class="eyebrow"><div><div class="mono">02 / Die Lösung</div><h2>Frame the feeling.</h2></div><p>RPM_Frame macht aus deinem Fahrzeug ein Bild, das die Energie der Maschine zeigt.</p></div>
+      <div class="feat-grid">
+        <article class="feat"><div class="num">01</div><h3>Professionelle Fotografie</h3><p>Sorgfältig ausgewählte Locations, Licht und Perspektiven. Jedes Bild professionell bearbeitet und hochauflösend übergeben.</p></article>
+        <article class="feat"><div class="num">02</div><h3>Reels & TikToks</h3><p>Bewegte Inhalte im Hochformat, geschnitten für Instagram und TikTok, damit dein Fahrzeug auch in Bewegung wirkt.</p></article>
+        <article class="feat"><div class="num">03</div><h3>Unkompliziert vor Ort</h3><p>Ein Shooting in der Zentralschweiz, abgestimmt auf dich und dein Fahrzeug: von der Anfrage bis zur fertigen Übergabe.</p></article>
+      </div>
+    </section>
+
+    <!-- 4 BILDERKARUSSELL -->
+    <section class="section" id="portfolio">
+      <div class="eyebrow"><div><div class="mono">03 / Portfolio</div><h2>Zeig, was drin steckt.</h2></div><p>Autos und Motorräder aus der Region. Wisch oder klick dich durch.</p></div>
+      <div class="carousel" id="carousel" role="region" aria-roledescription="Karussell" aria-label="Portfolio">
+        <button class="arrow prev" aria-label="Vorheriges Bild">←</button>
+        <div class="viewport"><div class="track">
+          <figure class="slide"><img src="assets/images/img-0412.webp" alt="Weisser Audi RS6 Avant vor Treppe und Betonfassade" loading="lazy" draggable="false"></figure>
+          <figure class="slide"><img src="assets/images/img-5793.webp" alt="Blaue Yamaha R1 im Gras" loading="lazy" draggable="false"></figure>
+          <figure class="slide"><img src="assets/images/img-0328.webp" alt="Weisser Audi RS7 Frontansicht" loading="lazy" draggable="false"></figure>
+          <figure class="slide"><img src="assets/images/img-7113.webp" alt="Dunkler Mercedes in einer Tiefgarage" loading="lazy" draggable="false"></figure>
+          <figure class="slide"><img src="assets/images/img-5609.webp" alt="Blaue Yamaha R6 am See" loading="lazy" draggable="false"></figure>
+          <figure class="slide"><img src="assets/images/img-0022.webp" alt="Blaue Supermoto unter einem Baum am See" loading="lazy" draggable="false"></figure>
+          <figure class="slide"><img src="assets/images/img-0090-2.webp" alt="Rote Ducati Hypermotard vor einer Garage" loading="lazy" draggable="false"></figure>
+          <figure class="slide"><img src="assets/images/img-6006.webp" alt="Detailaufnahme Bremsflüssigkeitsbehälter" loading="lazy" draggable="false"></figure>
+        </div></div>
+        <button class="arrow next" aria-label="Nächstes Bild">→</button>
+        <div class="dots" role="group" aria-label="Bildauswahl"></div>
+      </div>
+    </section>
+
+    <!-- 5 ANGEBOT -->
+    <section class="section pricing" id="angebot">
+      <div class="eyebrow"><div><div class="mono">04 / Angebot</div><h2>Choose your pace.</h2></div><p>Klar kalkuliert. Jedes Paket beinhaltet Auswahl, Bearbeitung und die fertige Übergabe deiner Inhalte.</p></div>
+      <div class="price-grid">
+        <article class="price-card"><div class="mono">📸 Fotos</div><h3>Still in motion.</h3><ul><li>10 Bilder <b>CHF 60</b></li><li>15 Bilder <b>CHF 80</b></li><li>25 Bilder <b>CHF 110</b></li></ul></article>
+        <article class="price-card"><div class="mono">🎥 Reels / TikToks</div><h3>Made to move.</h3><ul><li>1 Video <b>CHF 35</b></li><li>3 Videos <b>CHF 90</b></li><li>5 Videos <b>CHF 140</b></li></ul></article>
+        <article class="price-card featured"><div class="mono">🔥 Kombi-Pakete</div><h3>The full story.</h3><ul><li>15 Bilder + 1 Video <b>CHF 105</b></li><li>15 Bilder + 3 Videos <b>CHF 150</b></li><li>15 Bilder + 5 Videos <b>CHF 190</b></li></ul></article>
+      </div>
+    </section>
+
+    <!-- 6 CTA -->
+    <section class="section contact" id="anfrage">
+      <div><div class="mono">05 / Shooting anfragen</div><h2>Jetzt Shooting anfragen.</h2><p>Erzähl kurz von deinem Fahrzeug und deiner Idee. Ich melde mich mit den nächsten Schritten.</p></div>
+      <form class="form" action="FORMSPREE_URL_RPMFRAME" method="POST">
+        <div class="field"><label for="name">Name</label><input id="name" name="name" required autocomplete="name" placeholder="Dein Name"></div>
+        <div class="field"><label for="email">E-Mail</label><input id="email" name="email" type="email" required autocomplete="email" placeholder="deine@email.ch"></div>
+        <div class="field full"><label for="phone">Telefon (optional)</label><input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+41 79 000 00 00"></div>
+        <div class="field full"><label for="message">Nachricht</label><textarea id="message" name="message" required placeholder="Fahrzeug, Wunschleistung, Wunschdatum …"></textarea></div>
+        <div class="field full"><button class="button submit" type="submit">ANFRAGE ABSENDEN <b>→</b></button></div>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div><a class="logo" href="#home" aria-label="RPM Frame Startseite"><img class="brand-logo" src="assets/images/logo-rpm-frame.jpg" alt="RPM Frame" width="87" height="50"></a><p>Automotive Photography & Videography<br>Zentralschweiz</p></div>
+    <div class="mono">© 2026 RPM_Frame</div>
+  </footer>
+
+  <script>
+  (function(){
+    var root=document.getElementById('carousel'),track=root.querySelector('.track'),slides=[].slice.call(track.children),
+        prev=root.querySelector('.prev'),next=root.querySelector('.next'),dotsEl=root.querySelector('.dots'),
+        vp=root.querySelector('.viewport'),i=0,timer=null,paused=false,reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+    function perView(){var w=innerWidth;return w<=800?1:w<=1000?2:3}
+    function max(){return Math.max(0,slides.length-perView())}
+    function buildDots(){dotsEl.innerHTML='';for(var k=0;k<=max();k++){(function(k){var b=document.createElement('button');b.className='dot';b.setAttribute('aria-label','Bild '+(k+1));b.onclick=function(){go(k);restart()};dotsEl.appendChild(b)})(k)}}
+    function go(n){i=Math.min(Math.max(n,0),max());var s=slides[i];track.style.transform='translateX('+(-s.offsetLeft)+'px)';
+      [].forEach.call(dotsEl.children,function(d,k){d.setAttribute('aria-current',k===i)});prev.disabled=i===0;next.disabled=i===max()}
+    function step(){go(i>=max()?0:i+1)}
+    function restart(){clearInterval(timer);if(!reduce)timer=setInterval(function(){if(!paused)step()},4500)}
+    prev.onclick=function(){go(i-1);restart()};next.onclick=function(){step();restart()};
+    root.addEventListener('mouseenter',function(){paused=true});root.addEventListener('mouseleave',function(){paused=false});
+    root.addEventListener('focusin',function(){paused=true});root.addEventListener('focusout',function(){paused=false});
+    root.setAttribute('tabindex','0');root.addEventListener('keydown',function(e){if(e.key==='ArrowLeft'){go(i-1);restart()}if(e.key==='ArrowRight'){go(i+1);restart()}});
+    /* Swipe / Drag */
+    var sx=null,dx=0;
+    function down(x){sx=x;dx=0;paused=true;track.style.transition='none'}
+    function move(x){if(sx===null)return;dx=x-sx;track.style.transform='translateX('+(-slides[i].offsetLeft+dx)+'px)'}
+    function up(){if(sx===null)return;track.style.transition='';var t=slides[0].offsetWidth/5;go(dx<-t?i+1:dx>t?i-1:i);sx=null;paused=false;restart()}
+    vp.addEventListener('touchstart',function(e){down(e.touches[0].clientX)},{passive:true});
+    vp.addEventListener('touchmove',function(e){move(e.touches[0].clientX)},{passive:true});
+    vp.addEventListener('touchend',up);
+    vp.addEventListener('mousedown',function(e){down(e.clientX);e.preventDefault()});
+    addEventListener('mousemove',function(e){move(e.clientX)});addEventListener('mouseup',up);
+    var last=perView();addEventListener('resize',function(){if(perView()!==last){last=perView();buildDots()}go(i)});
+    buildDots();go(0);restart();
+  })();
+  </script>
+</body>
+</html>
