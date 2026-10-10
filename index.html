@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="de">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8"><meta name="theme-color" content="#f6f6f6"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="RPM_Frame — hochwertige Automotive Photography & Videography für Autos und Motorräder aus der Zentralschweiz.">
   <title>RPM_Frame — Automotive Photography</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23404040'/%3E%3Cpath d='M13 46V18h18c9 0 14 5 14 13 0 5-2 9-7 11l12 4H35l-10-4h-4v4H13zm8-12h9c4 0 6-2 6-5s-2-5-6-5h-9v10z' fill='%23f5f5f5'/%3E%3C/svg%3E">
@@ -11,6 +11,7 @@
     html{scroll-behavior:smooth}
     body{margin:0;background:var(--ink);color:var(--text);font:16px/1.55 Arial,Helvetica,sans-serif;-webkit-text-size-adjust:100%}
     a{color:inherit;text-decoration:none}
+    a,button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
     img{display:block;max-width:100%}
     .mono{font:500 .72rem/1 "Courier New",monospace;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
 
@@ -61,20 +62,35 @@
     .feat h3{font-size:1.3rem;margin:22px 0 10px;letter-spacing:-.04em}
     .feat p{margin:0;color:var(--muted);font-size:.95rem}
 
-    /* Karussell */
-    .carousel{position:relative}
-    .viewport{overflow:hidden;touch-action:pan-y}
-    .track{display:flex;gap:14px;transition:transform .6s cubic-bezier(.22,.7,.2,1);will-change:transform}
-    .slide{flex:0 0 calc((100% - 28px)/3);aspect-ratio:3/4;overflow:hidden;background:#ddd;margin:0;user-select:none}
-    .slide img{width:100%;height:100%;object-fit:cover;filter:saturate(.9) contrast(1.06);transition:transform .7s ease;-webkit-user-drag:none}
-    .slide:hover img{transform:scale(1.05)}
-    .arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:52px;height:52px;border-radius:50%;border:1px solid var(--line);background:rgba(245,245,245,.85);backdrop-filter:blur(8px);color:var(--accent);font-size:1.3rem;cursor:pointer;display:grid;place-items:center}
-    .arrow:hover{background:var(--accent);color:var(--on-accent)}
-    .arrow.prev{left:14px}.arrow.next{right:14px}
-    .arrow:disabled{opacity:.3;cursor:default}
-    .dots{display:flex;justify-content:center;gap:10px;margin-top:26px}
-    .dot{width:10px;height:10px;border-radius:50%;border:0;padding:0;background:rgba(64,64,64,.25);cursor:pointer}
-    .dot[aria-current="true"]{background:var(--accent);transform:scale(1.25)}
+    /* Portfolio */
+    .chips{display:flex;gap:10px;margin-bottom:26px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-bottom:4px}
+    .chips::-webkit-scrollbar{display:none}
+    .chip{flex:none;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 22px;border:1px solid rgba(64,64,64,.35);border-radius:999px;background:transparent;color:var(--text);font:700 .85rem Arial,Helvetica,sans-serif;cursor:pointer}
+    .chip:hover{border-color:var(--accent)}
+    .chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+    .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .shot{position:relative;display:block;padding:0;border:0;background:#ddd;aspect-ratio:2/3;overflow:hidden;cursor:zoom-in}
+    .shot[hidden],.field[hidden],.more-wrap[hidden],.videos[hidden],.gallery[hidden],.vplay[hidden]{display:none}
+    .shot img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+    .shot:hover img{transform:scale(1.05)}
+    .tag{position:absolute;left:10px;bottom:10px;background:rgba(246,246,246,.92);color:#2b2b2c;font:700 .62rem "Courier New",monospace;letter-spacing:.12em;text-transform:uppercase;padding:6px 8px}
+    .more-wrap{text-align:center;margin-top:32px}
+    .button.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+    .button.ghost:hover{background:var(--accent);color:var(--on-accent);filter:none}
+    .videos{display:grid;grid-template-columns:repeat(2,minmax(0,340px));gap:18px;justify-content:center}
+    .vwrap{margin:0}
+    .vwrap figcaption{margin-top:12px}
+    .vcard{position:relative;aspect-ratio:9/16;background:#111;overflow:hidden}
+    .vcard video{display:block;width:100%;height:100%;object-fit:cover}
+    .vplay{position:absolute;inset:0;border:0;background:rgba(0,0,0,.15);cursor:pointer;display:grid;place-items:center}
+    .vplay span{width:76px;height:76px;border-radius:50%;background:rgba(246,246,246,.94);color:var(--accent);display:grid;place-items:center;padding-left:4px}
+    .lb{position:fixed;inset:0;z-index:50;background:rgba(14,14,15,.95);display:none;align-items:center;justify-content:center}
+    .lb.open{display:flex}
+    .lb img{max-width:94vw;max-height:84vh;object-fit:contain;user-select:none}
+    .lb-btn{position:absolute;width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(20,20,21,.6);color:#fff;font-size:1.5rem;cursor:pointer;display:grid;place-items:center;line-height:1}
+    .lb-btn:hover{background:#fff;color:#222}
+    .lb-close{top:16px;right:16px}.lb-prev{left:16px;top:50%;transform:translateY(-50%)}.lb-next{right:16px;top:50%;transform:translateY(-50%)}
+    .lb-count{position:absolute;bottom:20px;left:0;right:0;text-align:center;color:#e6e6e6}
 
     /* Angebot */
     .pricing{background:var(--ink)}
@@ -83,20 +99,35 @@
     .price-card.featured{border-color:var(--accent);background:linear-gradient(145deg,#e3e3e2,#fff)}
     .price-card h3{font-size:1.35rem;margin:14px 0 22px;letter-spacing:-.04em}
     .price-card ul{list-style:none;padding:0;margin:0}
-    .price-card li{padding:11px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;font-size:.88rem}
+    .price-card li{padding:11px 0;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 12px;font-size:.92rem}
+    .price-card .p{display:inline-flex;align-items:baseline;gap:10px;margin-left:auto}
+    .price-card s{color:#8a8a8c;font:.76rem "Courier New",monospace;text-decoration:line-through;text-decoration-thickness:1.5px}
+    .price-card .save{margin:auto 0 0;padding-top:18px;font-size:.84rem;color:var(--muted)}
+    .price-card li b{font-size:.86rem}
     .price-card li b{color:var(--accent);font-family:"Courier New",monospace;font-size:.78rem;white-space:nowrap}
 
+    /* Kundenstimmen */
+    .reviews{background:var(--alt)}
+    .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .quote{margin:0;border:1px solid var(--line);background:var(--card);padding:31px;display:flex;flex-direction:column;gap:14px}
+    .quote figcaption{margin-top:auto;padding-top:14px}
+    .quote:before{content:'“';font:800 4.2rem/.7 Georgia,serif;color:var(--accent);height:34px}
+    .quote blockquote{margin:0;font-size:1rem;line-height:1.6;color:#2b2b2c}
+
     /* CTA */
-    .contact{background:var(--alt);display:grid;grid-template-columns:.8fr 1.2fr;gap:9vw}
+    .contact{background:var(--ink);display:grid;grid-template-columns:.8fr 1.2fr;gap:9vw}
     .contact h2{font-size:clamp(2.7rem,5vw,5.5rem);line-height:.91;letter-spacing:-.075em;margin:13px 0}
     .contact p{color:var(--muted);max-width:340px}
     .form{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-content:start}
     .field{display:grid;gap:8px}
     .field.full{grid-column:span 2}
     .field label{font:500 .69rem "Courier New",monospace;letter-spacing:.12em;text-transform:uppercase;color:#5a5a5c}
-    .field input,.field textarea{color:var(--text);background:transparent;border:0;border-bottom:1px solid #9a9a9c;padding:11px 0;font:inherit;outline:none;border-radius:0}
+    .field input,.field textarea,.field select{color:var(--text);background:transparent;border:0;border-bottom:1px solid #9a9a9c;padding:11px 0;font:inherit;outline:none;border-radius:0;min-height:46px;width:100%}
+    .field select{-webkit-appearance:none;appearance:none;cursor:pointer;padding-right:26px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23404040' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 4px center/12px}
+    .field select:invalid{color:#8c8c8e}
+    .field select option{color:#2b2b2c}
     .field textarea{height:110px;resize:vertical}
-    .field input:focus,.field textarea:focus{border-color:var(--accent)}
+    .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--accent)}
     .field input::placeholder,.field textarea::placeholder{color:#8c8c8e}
     .submit{margin-top:10px}
 
@@ -105,20 +136,29 @@
     footer .footer-side{display:grid;gap:18px;justify-items:end}
     .social{display:flex;gap:14px}.social a{width:42px;height:42px;border:1px solid rgba(245,245,245,.4);border-radius:50%;display:grid;place-items:center;color:#f5f5f5}.social a:hover{background:#f5f5f5;color:#404040}.social svg{width:20px;height:20px}
     footer p{margin:12px 0 0}
+    .stick{display:none}
 
-    @media(max-width:1000px){.slide{flex-basis:calc((100% - 14px)/2)}.feat-grid,.price-grid{grid-template-columns:1fr}.price-card{min-height:auto}}
+    @media(max-width:1000px){.gallery{grid-template-columns:repeat(3,1fr)}.feat-grid,.price-grid{grid-template-columns:1fr}.price-card{min-height:auto}.quotes{grid-template-columns:1fr}}
     @media(max-width:800px){
-      .nav{height:68px;padding:0 6vw}.brand-logo{height:42px}.links{display:none}
-      .hero{display:block;height:auto;min-height:0;padding:68px 0 0;overflow:visible}.hero-img{position:relative;right:auto;bottom:auto;width:100%;-webkit-mask-image:none;mask-image:none}.hero-content{max-width:none}.hero-content{padding:28px 6vw 56px}.hero h1{margin-top:16px}.scroll{display:none}
-      .section{padding:82px 6vw}
-      .eyebrow{display:block}.eyebrow p{margin-top:22px}
-      .problem,.contact{grid-template-columns:1fr;gap:16px}.contact{gap:36px}
-      .slide{flex-basis:86%}.arrow{display:none}
-      .form{grid-template-columns:1fr}.field.full{grid-column:auto}
-      footer{padding-left:6vw;padding-right:6vw;display:block}footer .footer-side{margin-top:24px;justify-items:start}
-      .hero h1{font-size:clamp(3.4rem,14vw,5.2rem)}
+      .nav{height:62px;padding:0 5vw}.brand-logo{height:38px}.links{display:none}.nav-cta{padding:11px 14px}
+      .hero{display:block;height:auto;min-height:0;padding:62px 0 0;overflow:visible}.hero-img{position:relative;right:auto;bottom:auto;width:100%;-webkit-mask-image:none;mask-image:none}.hero-content{max-width:none;padding:26px 5vw 48px}.hero h1{margin:14px 0 16px;font-size:clamp(3rem,14.5vw,4.6rem)}.hero p{font-size:1.08rem;margin-bottom:26px}.hero .button{width:100%;justify-content:space-between;padding:17px 20px}.scroll{display:none}
+      .section{padding:60px 5vw}
+      .eyebrow{display:block;margin-bottom:28px}.eyebrow p{margin-top:16px}
+      .problem,.contact{grid-template-columns:1fr;gap:12px}.contact{gap:30px}.problem-copy{padding-top:6px}.problem-copy p{font-size:1.04rem}
+      .feat,.price-card{padding:24px}.feat h3{margin-top:16px}
+      .chips{margin:0 -5vw 20px;padding:0 5vw 4px}
+      .gallery{grid-template-columns:repeat(2,1fr);gap:8px}
+      .videos{grid-template-columns:minmax(0,380px)}
+      .quotes{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 -5vw;padding:0 5vw 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.quotes::-webkit-scrollbar{display:none}
+      .quote{flex:0 0 86%;scroll-snap-align:center;padding:24px}
+      .form{grid-template-columns:1fr;gap:18px}.field.full{grid-column:auto}.submit{width:100%;justify-content:space-between;padding:17px 20px}
+      .contact p{max-width:none}
+      footer{padding:34px 5vw 100px;display:block}footer .footer-side{margin-top:24px;justify-items:start}
+      .lb-prev,.lb-next{top:auto;bottom:14px;transform:none}.lb-prev{left:16px}.lb-next{right:16px}.lb img{max-height:78vh}
+      .stick{display:block;position:fixed;left:0;right:0;bottom:0;z-index:9;padding:10px 5vw calc(10px + env(safe-area-inset-bottom));background:rgba(246,246,246,.97);border-top:1px solid var(--line);transform:translateY(120%);transition:transform .3s ease}
+      .stick.show{transform:none}.stick .button{width:100%;justify-content:space-between;padding:16px 20px}
     }
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.track,.slide img{transition:none}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.shot img,.stick{transition:none}}
   </style>
 </head>
 <body>
@@ -131,11 +171,11 @@
   <main>
     <!-- 1 HERO -->
     <section class="hero" id="home">
-      <img class="hero-img" src="assets/images/hero.webp" alt="Weisser Audi RS6 Avant vor moderner Architektur" fetchpriority="high">
+      <img class="hero-img" src="assets/images/hero.webp" alt="Weisser Audi RS6 Avant vor moderner Architektur" width="1920" height="1080" fetchpriority="high">
       <div class="hero-content">
         <div class="mono">Automotive Photography & Videography · Zentralschweiz</div>
         <h1>Built for the <span>drive.</span></h1>
-        <p>Starke Bilder und bewegte Inhalte für Autos und Motorräder, die mehr verdienen als einen Schnappschuss.</p>
+        <p>Hochwertige Foto- und Videoinhalte für Autos und Motorräder.</p>
         <a class="button" href="#anfrage">SHOOTING ANFRAGEN <b>→</b></a>
       </div>
       <div class="scroll mono">SCROLL TO EXPLORE</div>
@@ -164,23 +204,46 @@
       </div>
     </section>
 
-    <!-- 4 BILDERKARUSSELL -->
+    <!-- 4 PORTFOLIO -->
     <section class="section" id="portfolio">
-      <div class="eyebrow"><div><div class="mono">03 / Portfolio</div><h2>Zeig, was drin steckt.</h2></div><p>Autos und Motorräder aus der Region. Wisch oder klick dich durch.</p></div>
-      <div class="carousel" id="carousel" role="region" aria-roledescription="Karussell" aria-label="Portfolio">
-        <button class="arrow prev" aria-label="Vorheriges Bild">←</button>
-        <div class="viewport"><div class="track">
-          <figure class="slide"><img src="assets/images/img-0412.webp" alt="Weisser Audi RS6 Avant vor Treppe und Betonfassade" loading="lazy" draggable="false"></figure>
-          <figure class="slide"><img src="assets/images/img-5793.webp" alt="Blaue Yamaha R1 im Gras" loading="lazy" draggable="false"></figure>
-          <figure class="slide"><img src="assets/images/img-0328.webp" alt="Weisser Audi RS7 Frontansicht" loading="lazy" draggable="false"></figure>
-          <figure class="slide"><img src="assets/images/img-7113.webp" alt="Dunkler Mercedes in einer Tiefgarage" loading="lazy" draggable="false"></figure>
-          <figure class="slide"><img src="assets/images/img-5609.webp" alt="Blaue Yamaha R6 am See" loading="lazy" draggable="false"></figure>
-          <figure class="slide"><img src="assets/images/img-0022.webp" alt="Blaue Supermoto unter einem Baum am See" loading="lazy" draggable="false"></figure>
-          <figure class="slide"><img src="assets/images/img-0090-2.webp" alt="Rote Ducati Hypermotard vor einer Garage" loading="lazy" draggable="false"></figure>
-          <figure class="slide"><img src="assets/images/img-6006.webp" alt="Detailaufnahme Bremsflüssigkeitsbehälter" loading="lazy" draggable="false"></figure>
-        </div></div>
-        <button class="arrow next" aria-label="Nächstes Bild">→</button>
-        <div class="dots" role="group" aria-label="Bildauswahl"></div>
+      <div class="eyebrow"><div><div class="mono">03 / Portfolio</div><h2>Zeig, was drin steckt.</h2></div><p>Autos, Motorräder und Details aus der Region. Tippe ein Bild an, um es gross zu sehen.</p></div>
+      <div class="chips" role="group" aria-label="Portfolio filtern">
+        <button class="chip" type="button" data-f="alle" aria-pressed="true">Alle</button>
+        <button class="chip" type="button" data-f="autos" aria-pressed="false">Autos</button>
+        <button class="chip" type="button" data-f="moto" aria-pressed="false">Motorräder</button>
+        <button class="chip" type="button" data-f="details" aria-pressed="false">Details</button>
+        <button class="chip" type="button" data-f="videos" aria-pressed="false"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Videos</button>
+      </div>
+      <div class="gallery" id="grid">
+          <button class="shot" type="button" data-cat="autos" data-full="assets/images/portfolio/img-0347.webp"><img src="assets/images/portfolio/img-0347-t.webp" alt="Audi RS6 Avant in Silber, Seitenansicht mit Felge" width="640" height="960" loading="lazy" decoding="async"><span class="tag">Auto</span></button>
+          <button class="shot" type="button" data-cat="moto" data-full="assets/images/portfolio/img-0022.webp"><img src="assets/images/portfolio/img-0022-t.webp" alt="Blaue Supermoto unter einem Baum am See" width="640" height="960" loading="lazy" decoding="async"><span class="tag">Moto</span></button>
+          <button class="shot" type="button" data-cat="details" data-full="assets/images/portfolio/img-0073.webp"><img src="assets/images/portfolio/img-0073-t.webp" alt="Detail: Tankdeckel mit Carbon-Tank" width="640" height="960" loading="lazy" decoding="async"><span class="tag">Detail</span></button>
+          <button class="shot" type="button" data-cat="autos" data-full="assets/images/portfolio/img-0412.webp"><img src="assets/images/portfolio/img-0412-t.webp" alt="Weisser Audi RS6 Avant vor Treppe und Betonfassade" width="640" height="960" loading="lazy" decoding="async"><span class="tag">Auto</span></button>
+          <button class="shot" type="button" data-cat="moto" data-full="assets/images/portfolio/img-5609.webp"><img src="assets/images/portfolio/img-5609-t.webp" alt="Blaue Yamaha R6 am Seeufer" width="640" height="960" loading="lazy" decoding="async"><span class="tag">Moto</span></button>
+          <button class="shot" type="button" data-cat="details" data-full="assets/images/portfolio/img-0442.webp"><img src="assets/images/portfolio/img-0442-t.webp" alt="Detail: Audi Felge mit Bremse" width="640" height="960" loading="lazy" decoding="async"><span class="tag">Detail</span></button>
+          <button class="shot" type="button" data-cat="autos" data-full="assets/images/portfolio/img-6860.webp"><img src="assets/images/portfolio/img-6860-t.webp" alt="Weisse Corvette C7 auf der Strasse" width="640" height="960" loading="lazy" decoding="async"><span class="tag">Auto</span></button>
+          <button class="shot" type="button" data-cat="moto" data-full="assets/images/portfolio/img-6111.webp"><img src="assets/images/portfolio/img-6111-t.webp" alt="Blaue Yamaha R9 in der Frontansicht" width="640" height="960" loading="lazy" decoding="async"><span class="tag">Moto</span></button>
+          <button class="shot" type="button" data-cat="details" data-full="assets/images/portfolio/img-0523.webp"><img src="assets/images/portfolio/img-0523-t.webp" alt="Detail: Heckleuchte und Auspuff des Audi RS6" width="640" height="960" loading="lazy" decoding="async"><span class="tag">Detail</span></button>
+          <button class="shot" type="button" data-cat="autos" data-full="assets/images/portfolio/img-6888.webp"><img src="assets/images/portfolio/img-6888-t.webp" alt="Weisse Corvette in der Seitenansicht" width="640" height="960" loading="lazy" decoding="async"><span class="tag">Auto</span></button>
+          <button class="shot" type="button" data-cat="moto" data-full="assets/images/portfolio/img-7791.webp"><img src="assets/images/portfolio/img-7791-t.webp" alt="Fahrer mit Motorrad vor dem Abendhimmel" width="640" height="960" loading="lazy" decoding="async"><span class="tag">Moto</span></button>
+          <button class="shot" type="button" data-cat="details" data-full="assets/images/portfolio/img-5629.webp"><img src="assets/images/portfolio/img-5629-t.webp" alt="Detail: Yamaha Logo auf blauem Tank" width="640" height="960" loading="lazy" decoding="async"><span class="tag">Detail</span></button>
+          <button class="shot" type="button" data-cat="autos" data-full="assets/images/portfolio/img-6932.webp"><img src="assets/images/portfolio/img-6932-t.webp" alt="Weisser Ford Mustang Shelby mit blauen Rennstreifen" width="640" height="960" loading="lazy" decoding="async"><span class="tag">Auto</span></button>
+          <button class="shot" type="button" data-cat="moto" data-full="assets/images/portfolio/img-7868.webp"><img src="assets/images/portfolio/img-7868-t.webp" alt="Motorradfahrerin bei Sonnenuntergang" width="640" height="960" loading="lazy" decoding="async"><span class="tag">Moto</span></button>
+          <button class="shot" type="button" data-cat="details" data-full="assets/images/portfolio/img-5720.webp"><img src="assets/images/portfolio/img-5720-t.webp" alt="Detail: Cockpit und Display einer Yamaha" width="640" height="960" loading="lazy" decoding="async"><span class="tag">Detail</span></button>
+          <button class="shot" type="button" data-cat="autos" data-full="assets/images/portfolio/img-6984.webp"><img src="assets/images/portfolio/img-6984-t.webp" alt="Ford Mustang Shelby frontal vor Wiese und Wald" width="640" height="960" loading="lazy" decoding="async"><span class="tag">Auto</span></button>
+          <button class="shot" type="button" data-cat="moto" data-full="assets/images/portfolio/img-8128.webp"><img src="assets/images/portfolio/img-8128-t.webp" alt="Kawasaki ZX-6R mit Fahrer vor Betonbögen" width="640" height="960" loading="lazy" decoding="async"><span class="tag">Moto</span></button>
+          <button class="shot" type="button" data-cat="details" data-full="assets/images/portfolio/img-6006.webp"><img src="assets/images/portfolio/img-6006-t.webp" alt="Detail: Bremsflüssigkeitsbehälter" width="640" height="960" loading="lazy" decoding="async"><span class="tag">Detail</span></button>
+          <button class="shot" type="button" data-cat="autos" data-full="assets/images/portfolio/img-7018.webp"><img src="assets/images/portfolio/img-7018-t.webp" alt="Ford Mustang Shelby von hinten mit Schatten" width="640" height="960" loading="lazy" decoding="async"><span class="tag">Auto</span></button>
+          <button class="shot" type="button" data-cat="moto" data-full="assets/images/portfolio/img-8148.webp"><img src="assets/images/portfolio/img-8148-t.webp" alt="Kawasaki Ninja, Fahrer in Nahaufnahme" width="640" height="960" loading="lazy" decoding="async"><span class="tag">Moto</span></button>
+          <button class="shot" type="button" data-cat="details" data-full="assets/images/portfolio/img-8048.webp"><img src="assets/images/portfolio/img-8048-t.webp" alt="Detail: Auspuff einer Kawasaki" width="640" height="960" loading="lazy" decoding="async"><span class="tag">Detail</span></button>
+          <button class="shot" type="button" data-cat="autos" data-full="assets/images/portfolio/img-7156.webp"><img src="assets/images/portfolio/img-7156-t.webp" alt="Dunkler Mercedes in einer Tiefgarage" width="640" height="960" loading="lazy" decoding="async"><span class="tag">Auto</span></button>
+          <button class="shot" type="button" data-cat="moto" data-full="assets/images/portfolio/img-8232.webp"><img src="assets/images/portfolio/img-8232-t.webp" alt="Kawasaki ZX-6R vor Betonbögen, Fahrer im Hintergrund" width="640" height="960" loading="lazy" decoding="async"><span class="tag">Moto</span></button>
+          <button class="shot" type="button" data-cat="details" data-full="assets/images/portfolio/img-8070.webp"><img src="assets/images/portfolio/img-8070-t.webp" alt="Detail: Kawasaki Verkleidung mit Monster-Design" width="640" height="960" loading="lazy" decoding="async"><span class="tag">Detail</span></button>
+      </div>
+      <div class="more-wrap"><button class="button ghost" id="more" type="button">MEHR ANZEIGEN</button></div>
+      <div class="videos" id="videos" hidden>
+        <figure class="vwrap"><div class="vcard"><video preload="none" playsinline poster="assets/images/portfolio/video-r9-poster.webp" aria-label="Reel: Yamaha R9"><source src="assets/video/yamaha-r9.mp4" type="video/mp4"></video><button class="vplay" type="button" aria-label="Video abspielen: Yamaha R9"><span><svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button></div><figcaption class="mono">Yamaha R9 · Reel</figcaption></figure>
+        <figure class="vwrap"><div class="vcard"><video preload="none" playsinline poster="assets/images/portfolio/video-zx6r-poster.webp" aria-label="Reel: Kawasaki ZX-6R"><source src="assets/video/kawasaki-zx6r.mp4" type="video/mp4"></video><button class="vplay" type="button" aria-label="Video abspielen: Kawasaki ZX-6R"><span><svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button></div><figcaption class="mono">Kawasaki ZX-6R · Reel</figcaption></figure>
       </div>
     </section>
 
@@ -188,58 +251,107 @@
     <section class="section pricing" id="angebot">
       <div class="eyebrow"><div><div class="mono">04 / Angebot</div><h2>Choose your price.</h2></div><p>Klar kalkuliert. Jedes Paket beinhaltet Auswahl, Bearbeitung und die fertige Übergabe deiner Inhalte.</p></div>
       <div class="price-grid">
-        <article class="price-card"><div class="mono">📸 Fotos</div><h3>Still in motion.</h3><ul><li>10 Bilder <b>CHF 60</b></li><li>15 Bilder <b>CHF 80</b></li><li>25 Bilder <b>CHF 110</b></li></ul></article>
-        <article class="price-card"><div class="mono">🎥 Reels / TikToks</div><h3>Made to move.</h3><ul><li>1 Video <b>CHF 35</b></li><li>3 Videos <b>CHF 90</b></li><li>5 Videos <b>CHF 140</b></li></ul></article>
-        <article class="price-card featured"><div class="mono">🔥 Kombi-Pakete</div><h3>The full story.</h3><ul><li>15 Bilder + 1 Video <b>CHF 105</b></li><li>15 Bilder + 3 Videos <b>CHF 150</b></li><li>15 Bilder + 5 Videos <b>CHF 190</b></li></ul></article>
+        <article class="price-card"><div class="mono">📸 Fotos</div><h3>Still in motion.</h3><ul><li><span>10 Bilder</span><span class="p"><b>CHF 90</b></span></li><li><span>15 Bilder</span><span class="p"><b>CHF 120</b></span></li><li><span>25 Bilder</span><span class="p"><b>CHF 160</b></span></li></ul></article>
+        <article class="price-card"><div class="mono">🎥 Reels / TikToks</div><h3>Made to move.</h3><ul><li><span>1 Video</span><span class="p"><b>CHF 50</b></span></li><li><span>3 Videos</span><span class="p"><b>CHF 130</b></span></li><li><span>5 Videos</span><span class="p"><b>CHF 200</b></span></li></ul></article>
+        <article class="price-card featured"><div class="mono">🔥 Kombi-Pakete</div><h3>The full story.</h3><ul><li><span>15 Bilder + 1 Video</span><span class="p"><s>CHF 170</s><b>CHF 140</b></span></li><li><span>15 Bilder + 3 Videos</span><span class="p"><s>CHF 250</s><b>CHF 210</b></span></li><li><span>15 Bilder + 5 Videos</span><span class="p"><s>CHF 320</s><b>CHF 270</b></span></li></ul><p class="save">Im Kombi-Paket sparst du bis zu CHF 50.</p></article>
+      </div>
+    </section>
+
+    <!-- 5b KUNDENSTIMMEN -->
+    <section class="section reviews" id="stimmen">
+      <div class="eyebrow"><div><div class="mono">05 / Kundenstimmen</div><h2>Das sagen meine Kunden.</h2></div></div>
+      <div class="quotes">
+        <figure class="quote"><blockquote>«Terminfindig isch unkompliziert verlofe, shooting allei isch sehr chillig gsi, Bilder sind wie gwünscht super worde. Sehr schnelli Usgab vom Material, im allgemeine top Arbeit»</blockquote><figcaption class="mono">@BlackBeast_560SEC</figcaption></figure>
+        <figure class="quote"><blockquote>«Es isch e gueds und unkomplizierts shooting gsi. Die fertige ufnahme sin de hammer und es au sehr schnell gange bisi se bekoh ha. 10/10 experience gsi mit wiederholigsbedarf»</blockquote><figcaption class="mono">@dory.yzfr9</figcaption></figure>
+        <figure class="quote"><blockquote>«Unser Shooting war sehr unkompliziert Organisiert und gut geplant. Wir konnten die Bilder &amp; Videos effizient aufnehmen. Die fertigen Aufnahmen gefallen mir sehr gut. Besonders die Qualität und die Bildbearbeitung sind top. Alles in allem top Ergebnisse, Ich werde bestimmt wiedermal ein Shooting buchen.»</blockquote><figcaption class="mono">@janis_tm300</figcaption></figure>
       </div>
     </section>
 
     <!-- 6 CTA -->
     <section class="section contact" id="anfrage">
-      <div><div class="mono">05 / Shooting anfragen</div><h2>Jetzt Shooting anfragen.</h2><p>Erzähl kurz von deinem Fahrzeug und deiner Idee. Ich melde mich mit den nächsten Schritten.</p></div>
+      <div><div class="mono">06 / Shooting anfragen</div><h2>Jetzt Shooting anfragen.</h2><p>Erzähl kurz von deinem Fahrzeug und deiner Idee. Ich melde mich mit den nächsten Schritten.</p></div>
       <form class="form" action="FORMSPREE_URL_RPMFRAME" method="POST">
+        <input type="hidden" name="_subject" value="Neue Shooting-Anfrage – RPM_Frame">
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
         <div class="field"><label for="name">Name</label><input id="name" name="name" required autocomplete="name" placeholder="Dein Name"></div>
-        <div class="field"><label for="email">E-Mail</label><input id="email" name="email" type="email" required autocomplete="email" placeholder="deine@email.ch"></div>
-        <div class="field full"><label for="phone">Telefon (optional)</label><input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+41 79 000 00 00"></div>
-        <div class="field full"><label for="message">Nachricht</label><textarea id="message" name="message" required placeholder="Fahrzeug, Wunschleistung, Wunschdatum …"></textarea></div>
+        <div class="field"><label for="email">E-Mail</label><input id="email" name="email" type="email" inputmode="email" required autocomplete="email" placeholder="deine@email.ch"></div>
+        <div class="field"><label for="phone">Telefon (optional)</label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+41 79 000 00 00"></div>
+        <div class="field"><label for="type">Fahrzeug</label><select id="type" name="fahrzeug_typ" required><option value="" selected disabled>Bitte wählen</option><option>Auto</option><option>Motorrad</option><option>Mehrere Fahrzeuge</option><option>Anderes</option></select></div>
+        <div class="field"><label for="model">Marke &amp; Modell</label><input id="model" name="fahrzeug_modell" placeholder="z. B. Yamaha R1 / BMW M2"></div>
+        <div class="field"><label for="pack">Gewünschtes Paket</label><select id="pack" name="paket"><option>Noch unsicher, bitte beraten</option><optgroup label="Fotos"><option>10 Bilder (CHF 90)</option><option>15 Bilder (CHF 120)</option><option>25 Bilder (CHF 160)</option></optgroup><optgroup label="Reels / TikToks"><option>1 Video (CHF 50)</option><option>3 Videos (CHF 130)</option><option>5 Videos (CHF 200)</option></optgroup><optgroup label="Kombi-Pakete"><option>15 Bilder + 1 Video (CHF 140)</option><option>15 Bilder + 3 Videos (CHF 210)</option><option>15 Bilder + 5 Videos (CHF 270)</option></optgroup></select></div>
+        <div class="field"><label for="when">Wunschzeitraum</label><select id="when" name="zeitraum"><option>Flexibel / nach Absprache</option><option>So bald wie möglich</option><option>In den nächsten 2 Wochen</option><option>In 1–2 Monaten</option><option value="Bestimmtes Datum">Bestimmtes Datum wählen …</option></select></div>
+        <div class="field"><label for="light">Tageszeit</label><select id="light" name="tageszeit"><option>Egal / nach Absprache</option><option>Sonnenaufgang / früher Morgen</option><option>Tagsüber</option><option>Golden Hour / Abend</option><option>Nacht / Blaue Stunde</option></select></div>
+        <div class="field full" id="dateWrap" hidden><label for="date">Wunschdatum</label><input id="date" name="wunschdatum" type="date"></div>
+        <div class="field full"><label for="message">Nachricht</label><textarea id="message" name="message" required placeholder="Was schwebt dir vor? Location, Stil, Besonderheiten …"></textarea></div>
         <div class="field full"><button class="button submit" type="submit">ANFRAGE ABSENDEN <b>→</b></button></div>
       </form>
     </section>
   </main>
+
+  <div class="stick" id="stick"><a class="button" href="#anfrage">SHOOTING ANFRAGEN <b>→</b></a></div>
 
   <footer>
     <div><a class="logo" href="#home" aria-label="RPM Frame Startseite"><img class="brand-logo" src="assets/images/logo-rpm-frame-light.png" alt="RPM Frame" width="90" height="50"></a><p>Automotive Photography & Videography<br>Zentralschweiz</p></div>
     <div class="footer-side"><div class="social"><a href="https://instagram.com/rpm_frame" target="_blank" rel="noopener" aria-label="Instagram @rpm_frame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/></svg></a><a href="https://tiktok.com/@rpm_frame" target="_blank" rel="noopener" aria-label="TikTok @rpm_frame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.6 2.2 4.4 5 4.6"/></svg></a></div><div class="mono">© 2026 RPM_Frame</div></div>
   </footer>
 
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Bildansicht"><button class="lb-btn lb-close" type="button" aria-label="Schliessen">×</button><button class="lb-btn lb-prev" type="button" aria-label="Vorheriges Bild">←</button><img id="lbImg" alt=""><button class="lb-btn lb-next" type="button" aria-label="Nächstes Bild">→</button><div class="mono lb-count" id="lbCount"></div></div>
+
   <script>
   (function(){
-    var root=document.getElementById('carousel'),track=root.querySelector('.track'),slides=[].slice.call(track.children),
-        prev=root.querySelector('.prev'),next=root.querySelector('.next'),dotsEl=root.querySelector('.dots'),
-        vp=root.querySelector('.viewport'),i=0,timer=null,paused=false,reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-    function perView(){var w=innerWidth;return w<=800?1:w<=1000?2:3}
-    function max(){return Math.max(0,slides.length-perView())}
-    function buildDots(){dotsEl.innerHTML='';for(var k=0;k<=max();k++){(function(k){var b=document.createElement('button');b.className='dot';b.setAttribute('aria-label','Bild '+(k+1));b.onclick=function(){go(k);restart()};dotsEl.appendChild(b)})(k)}}
-    function go(n){i=Math.min(Math.max(n,0),max());var s=slides[i];track.style.transform='translateX('+(-s.offsetLeft)+'px)';
-      [].forEach.call(dotsEl.children,function(d,k){d.setAttribute('aria-current',k===i)});prev.disabled=i===0;next.disabled=i===max()}
-    function step(){go(i>=max()?0:i+1)}
-    function restart(){clearInterval(timer);if(!reduce)timer=setInterval(function(){if(!paused)step()},4500)}
-    prev.onclick=function(){go(i-1);restart()};next.onclick=function(){step();restart()};
-    root.addEventListener('mouseenter',function(){paused=true});root.addEventListener('mouseleave',function(){paused=false});
-    root.addEventListener('focusin',function(){paused=true});root.addEventListener('focusout',function(){paused=false});
-    root.setAttribute('tabindex','0');root.addEventListener('keydown',function(e){if(e.key==='ArrowLeft'){go(i-1);restart()}if(e.key==='ArrowRight'){go(i+1);restart()}});
-    /* Swipe / Drag */
-    var sx=null,dx=0;
-    function down(x){sx=x;dx=0;paused=true;track.style.transition='none'}
-    function move(x){if(sx===null)return;dx=x-sx;track.style.transform='translateX('+(-slides[i].offsetLeft+dx)+'px)'}
-    function up(){if(sx===null)return;track.style.transition='';var t=slides[0].offsetWidth/5;go(dx<-t?i+1:dx>t?i-1:i);sx=null;paused=false;restart()}
-    vp.addEventListener('touchstart',function(e){down(e.touches[0].clientX)},{passive:true});
-    vp.addEventListener('touchmove',function(e){move(e.touches[0].clientX)},{passive:true});
-    vp.addEventListener('touchend',up);
-    vp.addEventListener('mousedown',function(e){down(e.clientX);e.preventDefault()});
-    addEventListener('mousemove',function(e){move(e.clientX)});addEventListener('mouseup',up);
-    var last=perView();addEventListener('resize',function(){if(perView()!==last){last=perView();buildDots()}go(i)});
-    buildDots();go(0);restart();
+    function $(q,r){return (r||document).querySelector(q)}
+    function $$(q,r){return [].slice.call((r||document).querySelectorAll(q))}
+    /* ---- Portfolio: Filter ---- */
+    var grid=$('#grid'),vids=$('#videos'),shots=$$('.shot',grid),chips=$$('.chip'),more=$('#more'),LIMIT=8,filter='alle',expanded=false;
+    function pauseAll(except){$$('.vcard video').forEach(function(v){if(v!==except)v.pause()})}
+    function render(){
+      var isVid=filter==='videos';
+      grid.hidden=isVid;vids.hidden=!isVid;
+      if(isVid){pauseAll();more.parentNode.hidden=true;return}
+      var list=shots.filter(function(s){return filter==='alle'||s.getAttribute('data-cat')===filter});
+      shots.forEach(function(s){s.hidden=true});
+      list.forEach(function(s,i){s.hidden=!(expanded||i<LIMIT)});
+      var rest=list.length-LIMIT;
+      more.parentNode.hidden=expanded||rest<=0;
+      more.textContent='MEHR ANZEIGEN ('+Math.max(rest,0)+')';
+    }
+    chips.forEach(function(c){c.addEventListener('click',function(){
+      filter=c.getAttribute('data-f');expanded=false;
+      chips.forEach(function(x){x.setAttribute('aria-pressed',x===c)});render();
+    })});
+    more.addEventListener('click',function(){expanded=true;render()});
+    render();
+    /* ---- Videos ---- */
+    $$('.vcard').forEach(function(c){
+      var v=$('video',c),b=$('.vplay',c);
+      b.addEventListener('click',function(){pauseAll(v);v.controls=true;b.hidden=true;v.play()});
+      v.addEventListener('ended',function(){v.controls=false;b.hidden=false;v.currentTime=0});
+      v.addEventListener('play',function(){pauseAll(v)});
+    });
+    /* ---- Lightbox ---- */
+    var lb=$('#lb'),lbImg=$('#lbImg'),lbCount=$('#lbCount'),cur=[],idx=0,opener=null;
+    function show(){var s=cur[idx];lbImg.src=s.getAttribute('data-full');lbImg.alt=$('img',s).alt;lbCount.textContent=(idx+1)+' / '+cur.length;
+      var n=new Image();n.src=cur[(idx+1)%cur.length].getAttribute('data-full')}
+    function nav(d){idx=(idx+d+cur.length)%cur.length;show()}
+    function open(s){cur=shots.filter(function(x){return !x.hidden});idx=cur.indexOf(s);opener=s;show();lb.classList.add('open');document.body.style.overflow='hidden';$('.lb-close').focus()}
+    function close(){lb.classList.remove('open');document.body.style.overflow='';lbImg.removeAttribute('src');if(opener)opener.focus()}
+    shots.forEach(function(s){s.addEventListener('click',function(){open(s)})});
+    $('.lb-close').addEventListener('click',close);$('.lb-prev').addEventListener('click',function(){nav(-1)});$('.lb-next').addEventListener('click',function(){nav(1)});
+    lb.addEventListener('click',function(e){if(e.target===lb)close()});
+    addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')nav(-1);if(e.key==='ArrowRight')nav(1)});
+    var tx=null;lb.addEventListener('touchstart',function(e){tx=e.touches[0].clientX},{passive:true});
+    lb.addEventListener('touchend',function(e){if(tx===null)return;var dx=e.changedTouches[0].clientX-tx;tx=null;if(Math.abs(dx)>50)nav(dx<0?1:-1)});
+    /* ---- Formular: Datum nur bei Bedarf ---- */
+    var when=$('#when'),dw=$('#dateWrap'),di=$('#date');
+    di.min=new Date().toISOString().slice(0,10);
+    when.addEventListener('change',function(){var on=when.value==='Bestimmtes Datum';dw.hidden=!on;di.required=on;if(!on)di.value=''});
+    /* ---- Mobile: fixe Anfrage-Leiste ---- */
+    var stick=$('#stick'),vis={};
+    if('IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(es){es.forEach(function(e){vis[e.target.id||e.target.tagName]=e.isIntersecting});
+        stick.classList.toggle('show',!vis.home&&!vis.anfrage&&!vis.FOOTER)});
+      [$('#home'),$('#anfrage'),$('footer')].forEach(function(el){io.observe(el)});
+    }
   })();
   </script>
 </body>
