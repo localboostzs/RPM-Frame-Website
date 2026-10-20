@@ -30,7 +30,7 @@
 
     /* Hero */
     .hero{position:relative;display:block;padding-top:82px;overflow:hidden}
-    .hero-img{position:relative;display:block;margin-left:auto;width:50vw;height:max(calc(100vh - 82px),52.5vw);object-fit:cover;object-position:50% 62%;filter:saturate(1.1) contrast(1.05);-webkit-mask-image:linear-gradient(to right,transparent 0,#000 16%);mask-image:linear-gradient(to right,transparent 0,#000 16%)}
+    .hero-img{position:relative;display:block;margin-left:auto;width:min(50vw,max(calc(100vh - 82px),460px));height:max(calc(100vh - 82px),460px);object-fit:cover;object-position:50% 62%;filter:saturate(1.1) contrast(1.05);-webkit-mask-image:linear-gradient(to right,transparent 0,#000 16%);mask-image:linear-gradient(to right,transparent 0,#000 16%)}
     .hero-content{position:absolute;left:5.5vw;top:calc(50% + 41px);transform:translateY(-50%);z-index:1;max-width:34vw;color:#2b2b2c}
     .hero h1{font-size:clamp(2.6rem,4.7vw,5.6rem);line-height:.93;letter-spacing:-.075em;margin:20px 0 24px;font-weight:800}
     .hero h1 span{color:#6a6a6c}
