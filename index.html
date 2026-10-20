@@ -29,8 +29,8 @@
     .button:hover{filter:brightness(1.1)}
 
     /* Hero */
-    .hero{position:relative;display:block;height:clamp(620px,52vw,860px);padding-top:82px;overflow:hidden}
-    .hero-img{position:absolute;right:0;top:82px;width:52vw;height:calc(100% - 82px);object-fit:cover;object-position:50% 48%;filter:saturate(1.1) contrast(1.05);-webkit-mask-image:linear-gradient(to right,transparent 0,#000 30%);mask-image:linear-gradient(to right,transparent 0,#000 30%)}
+    .hero{position:relative;display:block;padding-top:82px;overflow:hidden}
+    .hero-img{position:relative;display:block;margin-left:auto;width:min(44vw,640px,max(360px,calc((100vh - 82px) * .6667)));height:auto;aspect-ratio:2/3;object-fit:cover;filter:saturate(1.1) contrast(1.05);-webkit-mask-image:linear-gradient(to right,transparent 0,#000 22%);mask-image:linear-gradient(to right,transparent 0,#000 22%)}
     .hero-content{position:absolute;left:5.5vw;top:calc(50% + 41px);transform:translateY(-50%);z-index:1;max-width:34vw;color:#2b2b2c}
     .hero h1{font-size:clamp(2.6rem,4.7vw,5.6rem);line-height:.93;letter-spacing:-.075em;margin:20px 0 24px;font-weight:800}
     .hero h1 span{color:#6a6a6c}
