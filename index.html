@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8"><meta name="theme-color" content="#f6f6f6"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="RPM_Frame — hochwertige Automotive Photography & Videography für Autos und Motorräder aus der Zentralschweiz.">
-  <title>RPM_Frame — Automotive Photography</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23404040'/%3E%3Cpath d='M13 46V18h18c9 0 14 5 14 13 0 5-2 9-7 11l12 4H35l-10-4h-4v4H13zm8-12h9c4 0 6-2 6-5s-2-5-6-5h-9v10z' fill='%23f5f5f5'/%3E%3C/svg%3E">
+  <title>RPM Frame - Automotive Photography</title>
+  <link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"><link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
   <style>
     :root{--ink:#f5f5f5;--alt:#ebebea;--card:#fff;--line:rgba(64,64,64,.18);--muted:#6a6a6c;--accent:#404040;--text:#2b2b2c;--on-accent:#f5f5f5}
     *{box-sizing:border-box}
@@ -139,6 +139,8 @@
     .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--accent)}
     .field input::placeholder,.field textarea::placeholder{color:#8c8c8e}
     .submit{margin-top:10px}
+    .contact .form-status{margin:14px 0 0;max-width:none;font-weight:700;font-size:1rem;line-height:1.5}
+    .form-status.ok{color:#1f5f33}.form-status.err{color:#a02020}
     .contact .form-note{margin:0;max-width:none;color:var(--muted);font-size:.92rem}
     .contact .mailline{margin-top:22px;font-size:.95rem}
     .mailline a{color:var(--text);font-weight:700;text-decoration:underline;text-underline-offset:3px;word-break:break-all}
@@ -266,7 +268,7 @@
 
     <!-- 5 ANGEBOT -->
     <section class="section pricing" id="angebot">
-      <div class="eyebrow"><div><div class="mono">04 / Angebot</div><h2>Choose your price.</h2></div><p>Klar kalkuliert. Jedes Paket beinhaltet Auswahl, Bearbeitung und die fertige Übergabe deiner Inhalte.</p></div>
+      <div class="eyebrow"><div><div class="mono">04 / Angebot</div><h2>Choose your shooting.</h2></div><p>Klar kalkuliert. Jedes Paket beinhaltet Auswahl, Bearbeitung und die fertige Übergabe deiner Inhalte.</p></div>
       <div class="price-grid">
         <article class="price-card"><div class="mono">📸 Fotos</div><h3>Still in motion.</h3><ul><li><span>10 Bilder</span><span class="p"><b>CHF 90</b></span></li><li><span>15 Bilder</span><span class="p"><b>CHF 120</b></span></li><li><span>25 Bilder</span><span class="p"><b>CHF 160</b></span></li></ul></article>
         <article class="price-card"><div class="mono">🎥 Reels / TikToks</div><h3>Made to move.</h3><ul><li><span>1 Video</span><span class="p"><b>CHF 50</b></span></li><li><span>3 Videos</span><span class="p"><b>CHF 130</b></span></li><li><span>5 Videos</span><span class="p"><b>CHF 200</b></span></li></ul></article>
@@ -298,7 +300,7 @@
     <!-- 6 CTA -->
     <section class="section contact" id="anfrage">
       <div><div class="mono">07 / Shooting anfragen</div><h2>Jetzt Shooting anfragen.</h2><p>Erzähl kurz von deinem Fahrzeug und deiner Idee. Ich melde mich mit den nächsten Schritten.</p><p class="mailline">Oder direkt per E-Mail:<br><a href="mailto:rpmframe.photo@gmail.com">rpmframe.photo@gmail.com</a></p></div>
-      <form class="form" action="FORMSPREE_URL_RPMFRAME" method="POST">
+      <form class="form" action="https://formspree.io/f/xbgdvpby" method="POST">
         <input type="hidden" name="_subject" value="Neue Shooting-Anfrage – RPM_Frame">
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
         <div class="field"><label for="name">Name</label><input id="name" name="name" required autocomplete="name" placeholder="Dein Name"></div>
@@ -312,7 +314,8 @@
         <div class="field full" id="dateWrap" hidden><label for="date">Wunschdatum</label><input id="date" name="wunschdatum" type="date"></div>
         <div class="field full"><label for="message">Nachricht</label><textarea id="message" name="message" required placeholder="Was schwebt dir vor? Location, Stil, Besonderheiten …"></textarea></div>
         <div class="field full"><button class="button submit" type="submit">ANFRAGE ABSENDEN <b>→</b></button></div>
-        <div class="field full"><p class="form-note">Ich melde mich in der Regel innert 48 Stunden bei dir.</p></div>
+        <div class="field full"><p class="form-note">Ich melde mich in der Regel innert 48 Stunden bei dir.</p>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite" hidden></p></div>
       </form>
     </section>
   </main>
@@ -375,6 +378,17 @@
     var when=$('#when'),dw=$('#dateWrap'),di=$('#date');
     di.min=new Date().toISOString().slice(0,10);
     when.addEventListener('change',function(){var on=when.value==='Bestimmtes Datum';dw.hidden=!on;di.required=on;if(!on)di.value=''});
+    /* ---- Formular senden (Formspree, ohne Seitenwechsel) ---- */
+    var form=$('.form'),status=$('#formStatus'),sbtn=$('.submit',form);
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      var label=sbtn.innerHTML;sbtn.disabled=true;sbtn.innerHTML='WIRD GESENDET …';status.hidden=true;
+      fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
+        .then(function(r){if(!r.ok)throw new Error('send');form.reset();dw.hidden=true;di.required=false;
+          status.textContent='Danke! Deine Anfrage ist angekommen. Ich melde mich in der Regel innert 48 Stunden bei dir.';status.className='form-status ok';status.hidden=false})
+        .catch(function(){status.textContent='Das hat leider nicht geklappt. Bitte versuche es nochmals oder schreib mir direkt an rpmframe.photo@gmail.com.';status.className='form-status err';status.hidden=false})
+        .then(function(){sbtn.disabled=false;sbtn.innerHTML=label;status.scrollIntoView({block:'nearest',behavior:'smooth'})});
+    });
     /* ---- Mobile: fixe Anfrage-Leiste ---- */
     var stick=$('#stick'),vis={};
     if('IntersectionObserver' in window){
