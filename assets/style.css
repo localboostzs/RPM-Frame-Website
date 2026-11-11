@@ -189,7 +189,7 @@
     .checklist li:last-child{border-bottom:1px solid var(--line)}
     .checklist li:before{content:'\2713';position:absolute;left:0;top:14px;color:var(--accent);font-weight:800}
     .page-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-    .page-gallery img{width:100%;aspect-ratio:2/3;object-fit:cover;background:#ddd}
+    .page-gallery img{display:block;width:100%;height:auto;aspect-ratio:2/3;object-fit:cover;background:#ddd}
     .steps-list{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
     .steps-list li{border:1px solid var(--line);background:var(--card);padding:22px;counter-increment:s;font-weight:700;line-height:1.35}
     .steps-list li:before{content:counter(s,decimal-leading-zero);display:block;font:500 .76rem "Courier New",monospace;color:var(--accent);margin-bottom:18px}
@@ -202,3 +202,26 @@
     .alt-bg{background:var(--alt)}
     @media(max-width:1000px){.page-gallery{grid-template-columns:repeat(2,1fr)}.steps-list{grid-template-columns:1fr 1fr}.page-videos{grid-template-columns:repeat(2,minmax(0,1fr))}.price-grid.two,.price-grid.one{grid-template-columns:1fr}}
     @media(max-width:800px){.page-hero{padding-top:96px;padding-bottom:40px}.steps-list{grid-template-columns:1fr}.cta-row .button{flex:1 1 100%;justify-content:space-between;padding:17px 20px}.page-gallery{gap:8px}.page-videos{gap:10px}.region-text{font-size:1.02rem}}
+
+    /* ===== Mobile-Feinschliff: Tippflächen ===== */
+    .crumbs a{display:inline-block;padding:12px 0}
+    @media(max-width:800px){
+      .nav .logo{display:flex;align-items:center;min-height:44px}
+      .f-legal{gap:0 20px}
+      .f-legal a,.f-mail{display:inline-flex;align-items:center;min-height:44px;padding:0}
+      .f-left p{margin-top:8px}
+    }
+
+    @media(max-width:800px){
+      .social a{width:44px;height:44px}
+      .nav-cta{display:inline-flex;align-items:center;min-height:44px}
+      .crumbs a{padding:14px 0}
+      .f-legal a,.f-mail{min-width:44px;padding:0 2px}
+    }
+
+    @media(max-width:800px){
+      .tag{font-size:.72rem}
+      .field label{font-size:.75rem}
+      .f-left .logo{display:inline-block;padding:3px 0}
+      .crumbs a{padding:16px 0}
+    }
