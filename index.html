@@ -1,183 +1,213 @@
 <!doctype html>
-<html lang="de">
+<html lang="de-CH">
 <head>
   <meta charset="utf-8"><meta name="theme-color" content="#f6f6f6"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="RPM_Frame — hochwertige Automotive Photography & Videography für Autos und Motorräder aus der Zentralschweiz.">
-  <title>RPM Frame - Automotive Photography</title>
+  <meta name="description" content="Auto- &amp; Motorradfotografie in der Region Luzern und Zentralschweiz: Fotos ab CHF 90, Reels ab CHF 50. Shooting direkt bei dir. Jetzt unverbindlich anfragen.">
+  <title>Autofotograf Luzern &amp; Zentralschweiz | RPM Frame</title>
   <link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"><link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <style>
-    :root{--ink:#f5f5f5;--alt:#ebebea;--card:#fff;--line:rgba(64,64,64,.18);--muted:#6a6a6c;--accent:#404040;--text:#2b2b2c;--on-accent:#f5f5f5}
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;background:var(--ink);color:var(--text);font:16px/1.55 Arial,Helvetica,sans-serif;-webkit-text-size-adjust:100%}
-    a{color:inherit;text-decoration:none}
-    a,button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-    img{display:block;max-width:100%}
-    .mono{font:500 .72rem/1 "Courier New",monospace;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
-
-    /* Nav */
-    .nav{height:82px;display:flex;align-items:center;justify-content:space-between;padding:0 5.5vw;position:fixed;top:0;z-index:10;width:100%;border-bottom:1px solid var(--line);background:#f6f6f6}
-    .brand-logo{height:50px;width:auto;}
-    .links{display:flex;gap:25px;font-size:.76rem;font-weight:600}
-    .links a:hover{opacity:.6}
-    .nav-cta{border:1px solid var(--accent);padding:10px 16px;color:var(--accent);font-size:.72rem;font-weight:700}
-    .nav-cta:hover{background:var(--accent);color:var(--on-accent)}
-
-    /* Buttons */
-    .button{display:inline-flex;align-items:center;gap:16px;background:var(--accent);color:var(--on-accent);padding:15px 21px;font-weight:800;font-size:.82rem;border:0;cursor:pointer;font-family:inherit}
-    .button b{font-size:1.2rem;line-height:0}
-    .button:hover{filter:brightness(1.1)}
-
-    /* Hero */
-    .hero{position:relative;display:block;padding-top:82px;overflow:hidden}
-    .hero-img{position:relative;display:block;margin-left:auto;width:min(50vw,max(calc(100vh - 82px),460px));height:max(calc(100vh - 82px),460px);object-fit:cover;object-position:50% 62%;filter:saturate(1.1) contrast(1.05);-webkit-mask-image:linear-gradient(to right,transparent 0,#000 16%);mask-image:linear-gradient(to right,transparent 0,#000 16%)}
-    .hero-content{position:absolute;left:5.5vw;top:calc(50% + 41px);transform:translateY(-50%);z-index:1;max-width:34vw;color:#2b2b2c}
-    .hero h1{font-size:clamp(2.6rem,4.7vw,5.6rem);line-height:.93;letter-spacing:-.075em;margin:20px 0 24px;font-weight:800}
-    .hero h1 span{color:#6a6a6c}
-    .hero p{max-width:440px;color:#3c3c3d;font-size:1.03rem;margin:0 0 32px}
-    .scroll{position:absolute;right:5.5vw;bottom:8vw;z-index:1;writing-mode:vertical-rl;color:#f5f5f5}
-
-    /* Sections */
-    .section{padding:125px 5.5vw}
-    .eyebrow{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:42px}
-    .eyebrow h2{font-size:clamp(2.2rem,4vw,4.3rem);letter-spacing:-.065em;line-height:1;margin:12px 0 0}
-    .eyebrow p{max-width:340px;color:var(--muted);margin:0}
-    .alt{background:var(--alt)}
-
-    /* Problem */
-    .problem{display:grid;grid-template-columns:1fr 1.3fr;gap:9vw;align-items:start}
-    .problem h2{font-size:clamp(2.5rem,5vw,5.2rem);line-height:.94;letter-spacing:-.07em;margin:15px 0}
-    .problem h2 span{color:#6a6a6c}
-    .problem-copy{padding-top:26px}
-    .problem-copy p{color:#4a4a4b;font-size:1.12rem;max-width:580px;margin:0 0 20px}
-    .pain{list-style:none;padding:0;margin:30px 0 0;max-width:580px}
-    .pain li{padding:14px 0 14px 34px;border-top:1px solid var(--line);position:relative;color:#2b2b2c}
-    .pain li:before{content:'×';position:absolute;left:0;top:11px;color:var(--accent);font-size:1.3rem;line-height:1.3}
-
-    /* Lösung */
-    .solution{background:var(--alt)}
-    .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-    .feat{border:1px solid var(--line);padding:31px;background:var(--card)}
-    .feat .num{font:500 .76rem "Courier New",monospace;color:var(--accent)}
-    .feat h3{font-size:1.3rem;margin:22px 0 10px;letter-spacing:-.04em}
-    .feat p{margin:0;color:var(--muted);font-size:.95rem}
-
-    /* Portfolio */
-    .chips{display:flex;gap:10px;margin-bottom:26px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-bottom:4px}
-    .chips::-webkit-scrollbar{display:none}
-    .chip{flex:none;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 22px;border:1px solid rgba(64,64,64,.35);border-radius:999px;background:transparent;color:var(--text);font:700 .85rem Arial,Helvetica,sans-serif;cursor:pointer}
-    .chip:hover{border-color:var(--accent)}
-    .chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
-    .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-    .shot{position:relative;display:block;padding:0;border:0;background:#ddd;aspect-ratio:2/3;overflow:hidden;cursor:zoom-in}
-    .shot[hidden],.field[hidden],.more-wrap[hidden],.videos[hidden],.gallery[hidden],.vplay[hidden]{display:none}
-    .shot img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
-    .shot:hover img{transform:scale(1.05)}
-    .tag{position:absolute;left:10px;bottom:10px;background:rgba(246,246,246,.92);color:#2b2b2c;font:700 .62rem "Courier New",monospace;letter-spacing:.12em;text-transform:uppercase;padding:6px 8px}
-    .more-wrap{text-align:left;margin-top:32px}
-    .button.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
-    .button.ghost:hover{background:var(--accent);color:var(--on-accent);filter:none}
-    .videos{display:grid;grid-template-columns:repeat(4,minmax(0,270px));gap:18px;justify-content:start}
-    .vwrap{margin:0}
-    .vwrap figcaption{margin-top:12px}
-    .vcard{position:relative;aspect-ratio:9/16;background:#111;overflow:hidden}
-    .vcard video{display:block;width:100%;height:100%;object-fit:cover}
-    .vplay{position:absolute;inset:0;border:0;background:rgba(0,0,0,.15);cursor:pointer;display:grid;place-items:center}
-    .vplay span{width:76px;height:76px;border-radius:50%;background:rgba(246,246,246,.94);color:var(--accent);display:grid;place-items:center;padding-left:4px}
-    .lb{position:fixed;inset:0;z-index:50;background:rgba(14,14,15,.95);display:none;align-items:center;justify-content:center}
-    .lb.open{display:flex}
-    .lb img{max-width:94vw;max-height:84vh;object-fit:contain;user-select:none}
-    .lb-btn{position:absolute;width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(20,20,21,.6);color:#fff;font-size:1.5rem;cursor:pointer;display:grid;place-items:center;line-height:1}
-    .lb-btn:hover{background:#fff;color:#222}
-    .lb-close{top:16px;right:16px}.lb-prev{left:16px;top:50%;transform:translateY(-50%)}.lb-next{right:16px;top:50%;transform:translateY(-50%)}
-    .lb-count{position:absolute;bottom:20px;left:0;right:0;text-align:center;color:#e6e6e6}
-
-    /* Angebot */
-    .pricing{background:var(--ink)}
-    .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-    .price-card{border:1px solid var(--line);padding:31px;min-height:335px;background:var(--card);display:flex;flex-direction:column}
-    .price-card.featured{border-color:var(--accent);background:linear-gradient(145deg,#e3e3e2,#fff)}
-    .price-card h3{font-size:1.35rem;margin:14px 0 22px;letter-spacing:-.04em}
-    .price-card ul{list-style:none;padding:0;margin:0}
-    .price-card li{padding:11px 0;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 12px;font-size:.92rem}
-    .price-card .p{display:inline-flex;align-items:baseline;gap:10px;margin-left:auto}
-    .price-card s{color:#58585a;font:.86rem "Courier New",monospace;text-decoration:line-through;text-decoration-thickness:1px;text-decoration-color:rgba(64,64,64,.6)}
-    .price-card .save{margin:auto 0 0;padding-top:18px;font-size:.84rem;color:var(--muted)}
-    .price-card li b{font-size:.86rem}
-    .price-card li b{color:var(--accent);font-family:"Courier New",monospace;font-size:.78rem;white-space:nowrap}
-
-    /* Kundenstimmen */
-    .reviews{background:var(--alt)}
-    .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-    .quote{margin:0;border:1px solid var(--line);background:var(--card);padding:31px;display:flex;flex-direction:column;gap:14px}
-    .quote figcaption{margin-top:auto;padding-top:14px}
-    .quote:before{content:'“';font:800 4.2rem/.7 Georgia,serif;color:var(--accent);height:34px}
-    .quote blockquote{margin:0;font-size:1rem;line-height:1.6;color:#2b2b2c}
-
-    /* FAQ */
-    .faq-list{max-width:860px;border-bottom:1px solid var(--line)}
-    .faq details{border-top:1px solid var(--line)}
-    .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0;min-height:56px;font-weight:700;font-size:1.1rem;letter-spacing:-.02em}
-    .faq summary::-webkit-details-marker{display:none}
-    .faq summary:after{content:'+';flex:none;font:400 1.7rem/1 Arial,Helvetica,sans-serif;color:var(--accent)}
-    .faq details[open] summary:after{content:'–'}
-    .faq details p{margin:0 0 24px;max-width:680px;color:#4a4a4b;font-size:1.02rem}
-
-    /* CTA */
-    .contact{background:var(--alt);display:grid;grid-template-columns:.8fr 1.2fr;gap:9vw}
-    .contact h2{font-size:clamp(2.7rem,5vw,5.5rem);line-height:.91;letter-spacing:-.075em;margin:13px 0}
-    .contact p{color:var(--muted);max-width:340px}
-    .form{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-content:start}
-    .field{display:grid;gap:8px}
-    .field.full{grid-column:span 2}
-    .field label{font:500 .69rem "Courier New",monospace;letter-spacing:.12em;text-transform:uppercase;color:#5a5a5c}
-    .field input,.field textarea,.field select{color:var(--text);background:transparent;border:0;border-bottom:1px solid #9a9a9c;padding:11px 0;font:inherit;outline:none;border-radius:0;min-height:46px;width:100%}
-    .field select{-webkit-appearance:none;appearance:none;cursor:pointer;padding-right:26px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23404040' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 4px center/12px}
-    .field select:invalid{color:#8c8c8e}
-    .field select option{color:#2b2b2c}
-    .field textarea{height:110px;resize:vertical}
-    .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--accent)}
-    .field input::placeholder,.field textarea::placeholder{color:#8c8c8e}
-    .submit{margin-top:10px}
-    .contact .form-status{margin:14px 0 0;max-width:none;font-weight:700;font-size:1rem;line-height:1.5}
-    .form-status.ok{color:#1f5f33}.form-status.err{color:#a02020}
-    .contact .form-note{margin:0;max-width:none;color:var(--muted);font-size:.92rem}
-    .contact .mailline{margin-top:22px;font-size:.95rem}
-    .contact-direct{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
-    .mailline a{color:var(--text);font-weight:700;text-decoration:underline;text-underline-offset:3px;word-break:break-all}
-
-    footer{padding:40px 5.5vw 44px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:28px;background:#404040;color:#cfcfd0;font-size:.8rem}
-    footer .mono{color:#e6e6e6}
-    footer .footer-side{display:grid;gap:18px;justify-items:end;justify-self:end}
-    .social{display:flex;gap:14px}.social a{width:42px;height:42px;border:1px solid rgba(245,245,245,.4);border-radius:50%;display:grid;place-items:center;color:#f5f5f5}.social a:hover{background:#f5f5f5;color:#404040}.social svg{width:20px;height:20px}
-    .credit{display:grid;justify-items:center;gap:8px;text-align:center}.credit .mono{text-transform:none;letter-spacing:.08em;font-size:.74rem}.credit img{width:170px;height:auto;opacity:.95}.credit:hover img{opacity:1}
-    .f-mail{color:#f5f5f5;text-decoration:underline;text-underline-offset:3px}
-    .f-legal{display:flex;gap:18px}.f-legal a{color:#cfcfd0;text-decoration:underline;text-underline-offset:3px}.f-legal a:hover,.f-mail:hover{opacity:.7}
-    footer p{margin:12px 0 0}
-    .stick{display:none}
-
-    @media(max-width:1000px){.videos{grid-template-columns:repeat(2,minmax(0,300px))}.gallery{grid-template-columns:repeat(3,1fr)}.feat-grid,.price-grid{grid-template-columns:1fr}.price-card{min-height:auto}.quotes{grid-template-columns:1fr}}
-    @media(max-width:800px){
-      .nav{height:62px;padding:0 5vw}.brand-logo{height:38px}.links{display:none}.nav-cta{padding:11px 14px}
-      .hero{display:block;height:auto;min-height:0;padding:62px 0 0;overflow:visible}.hero-img{position:relative;right:auto;top:auto;bottom:auto;width:100%;height:auto;aspect-ratio:4/5;object-position:50% 58%;-webkit-mask-image:none;mask-image:none}.hero-content{position:relative;left:auto;top:auto;transform:none;max-width:none;padding:26px 5vw 48px}.hero h1{margin:14px 0 16px;font-size:clamp(3rem,14.5vw,4.6rem)}.hero p{font-size:1.08rem;margin-bottom:26px}.hero .button{width:100%;justify-content:space-between;padding:17px 20px}.scroll{display:none}
-      .section{padding:60px 5vw}
-      .eyebrow{display:block;margin-bottom:28px}.eyebrow p{margin-top:16px}
-      .problem,.contact{grid-template-columns:1fr;gap:12px}.contact{gap:30px}.problem-copy{padding-top:6px}.problem-copy p{font-size:1.04rem}
-      .feat,.price-card{padding:24px}.feat h3{margin-top:16px}
-      .chips{margin:0 -5vw 20px;padding:0 5vw 4px}
-      .gallery{grid-template-columns:repeat(2,1fr);gap:8px}
-      .videos{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.vplay span{width:56px;height:56px}.vwrap figcaption{font-size:.62rem;line-height:1.4}
-      .quotes{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 -5vw;padding:0 5vw 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.quotes::-webkit-scrollbar{display:none}
-      .quote{flex:0 0 86%;scroll-snap-align:center;padding:24px}
-      .form{grid-template-columns:1fr;gap:18px}.field.full{grid-column:auto}.submit{width:100%;justify-content:space-between;padding:17px 20px}
-      .contact p{max-width:none}
-      footer{padding:34px 5vw 100px;display:block}footer .footer-side{margin-top:26px;justify-items:start;justify-self:start}.credit{justify-items:start;text-align:left;margin-top:28px}.f-legal a,.f-mail{display:inline-block;padding:6px 0}
-      .lb-prev,.lb-next{top:auto;bottom:14px;transform:none}.lb-prev{left:16px}.lb-next{right:16px}.lb img{max-height:78vh}
-      .stick{display:flex;gap:10px;align-items:stretch;position:fixed;left:0;right:0;bottom:0;z-index:9;padding:10px 5vw calc(10px + env(safe-area-inset-bottom));background:rgba(246,246,246,.97);border-top:1px solid var(--line);transform:translateY(120%);transition:transform .3s ease}
-      .stick.show{transform:none}.stick .button{flex:1;min-width:0;justify-content:space-between;padding:16px 20px}.stick .wa{flex:none;width:54px;display:grid;place-items:center;border:1px solid var(--accent);color:var(--accent);background:#fff}.stick .wa svg{width:26px;height:26px}.contact-direct .button{flex:1 1 100%;justify-content:space-between;padding:17px 20px}
+  <link rel="stylesheet" href="assets/style.css">
+<link rel="canonical" href="https://rpmframe.ch/"><meta property="og:type" content="website"><meta property="og:locale" content="de_CH"><meta property="og:site_name" content="RPM Frame"><meta property="og:title" content="Autofotograf Luzern &amp; Zentralschweiz | RPM Frame"><meta property="og:description" content="Auto- &amp; Motorradfotografie in der Region Luzern und Zentralschweiz: Fotos ab CHF 90, Reels ab CHF 50. Shooting direkt bei dir. Jetzt unverbindlich anfragen."><meta property="og:url" content="https://rpmframe.ch/"><meta property="og:image" content="https://rpmframe.ch/assets/images/og-image.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Autofotograf Luzern &amp; Zentralschweiz | RPM Frame"><meta name="twitter:description" content="Auto- &amp; Motorradfotografie in der Region Luzern und Zentralschweiz: Fotos ab CHF 90, Reels ab CHF 50. Shooting direkt bei dir. Jetzt unverbindlich anfragen."><meta name="twitter:image" content="https://rpmframe.ch/assets/images/og-image.jpg">
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "ProfessionalService",
+ "@id": "https://rpmframe.ch/#business",
+ "name": "RPM Frame",
+ "alternateName": "RPM_Frame",
+ "foundingDate": "2026-06",
+ "description": "Auto- und Motorradfotografie sowie Reels und TikToks in der Region Luzern und der Zentralschweiz.",
+ "url": "https://rpmframe.ch/",
+ "logo": "https://rpmframe.ch/assets/images/logo-rpm-frame.jpg",
+ "image": "https://rpmframe.ch/assets/images/og-image.jpg",
+ "telephone": "+41778046758",
+ "email": "rpmframe.photo@gmail.com",
+ "address": {
+  "@type": "PostalAddress",
+  "postalCode": "6020",
+  "addressLocality": "Emmenbrücke",
+  "addressRegion": "LU",
+  "addressCountry": "CH"
+ },
+ "areaServed": [
+  {
+   "@type": "AdministrativeArea",
+   "name": "Luzern"
+  },
+  {
+   "@type": "AdministrativeArea",
+   "name": "Zug"
+  },
+  {
+   "@type": "AdministrativeArea",
+   "name": "Schwyz"
+  },
+  {
+   "@type": "AdministrativeArea",
+   "name": "Nidwalden"
+  },
+  {
+   "@type": "AdministrativeArea",
+   "name": "Obwalden"
+  },
+  {
+   "@type": "AdministrativeArea",
+   "name": "Uri"
+  }
+ ],
+ "founder": {
+  "@type": "Person",
+  "name": "Mike Valentin"
+ },
+ "sameAs": [
+  "https://instagram.com/rpm_frame",
+  "https://tiktok.com/@rpm_frame"
+ ],
+ "hasOfferCatalog": {
+  "@type": "OfferCatalog",
+  "name": "Preise",
+  "itemListElement": [
+   {
+    "@type": "Offer",
+    "name": "10 Bilder",
+    "price": "90",
+    "priceCurrency": "CHF",
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Fotoshooting: 10 Bilder"
     }
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.shot img,.stick{transition:none}}
-  </style>
+   },
+   {
+    "@type": "Offer",
+    "name": "15 Bilder",
+    "price": "120",
+    "priceCurrency": "CHF",
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Fotoshooting: 15 Bilder"
+    }
+   },
+   {
+    "@type": "Offer",
+    "name": "25 Bilder",
+    "price": "160",
+    "priceCurrency": "CHF",
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Fotoshooting: 25 Bilder"
+    }
+   },
+   {
+    "@type": "Offer",
+    "name": "1 Video",
+    "price": "50",
+    "priceCurrency": "CHF",
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Reels / TikToks: 1 Video"
+    }
+   },
+   {
+    "@type": "Offer",
+    "name": "3 Videos",
+    "price": "130",
+    "priceCurrency": "CHF",
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Reels / TikToks: 3 Videos"
+    }
+   },
+   {
+    "@type": "Offer",
+    "name": "5 Videos",
+    "price": "200",
+    "priceCurrency": "CHF",
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Reels / TikToks: 5 Videos"
+    }
+   },
+   {
+    "@type": "Offer",
+    "name": "15 Bilder + 1 Video",
+    "price": "140",
+    "priceCurrency": "CHF",
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Kombi-Paket: 15 Bilder + 1 Video"
+    }
+   },
+   {
+    "@type": "Offer",
+    "name": "15 Bilder + 3 Videos",
+    "price": "210",
+    "priceCurrency": "CHF",
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Kombi-Paket: 15 Bilder + 3 Videos"
+    }
+   },
+   {
+    "@type": "Offer",
+    "name": "15 Bilder + 5 Videos",
+    "price": "270",
+    "priceCurrency": "CHF",
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Kombi-Paket: 15 Bilder + 5 Videos"
+    }
+   }
+  ]
+ }
+}
+</script>
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Wie lange dauert ein Shooting?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Je nach Aufwand und Umfang ca. 1,5 bis 2,5 Stunden."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Fotografierst du auch in Luzern, Zug oder Schwyz?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Ja, ich fotografiere in der ganzen Zentralschweiz, also auch in und um Luzern, Zug, Schwyz, Nidwalden, Obwalden und Uri. Basis ist Emmenbrücke, die Anfahrt bis 35 km ist inklusive."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Wo findet das Shooting statt?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "In der Zentralschweiz, den Ort besprechen wir gemeinsam. Gute Locations kenne ich, du kannst aber auch einen Wunschort vorschlagen."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Was kostet die Anfahrt?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Die Anfahrt ist bis 35 km ab Emmenbrücke inklusive. Bei längeren Strecken verrechne ich CHF 0.50 pro zusätzlichem Kilometer (hin und zurück). Ich sage es dir vorher, nichts kommt überraschend."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Wie kann ich bezahlen?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Per Twint oder bar, direkt nach dem Shooting."
+   }
+  }
+ ]
+}
+</script>
 </head>
 <body>
   <nav class="nav">
@@ -191,9 +221,9 @@
     <section class="hero" id="home">
       <img class="hero-img" src="assets/images/hero-portrait.webp" alt="Motorradfahrer auf seinem Motorrad im Abendlicht" width="1400" height="2100" fetchpriority="high">
       <div class="hero-content">
-        <div class="mono">Automotive Photography & Videography · Zentralschweiz</div>
-        <h1>Built for the <span>drive.</span></h1>
-        <p>Hochwertige Foto- und Videoinhalte für Autos und Motorräder.</p>
+        <h1 class="mono kicker">Auto- &amp; Motorradfotografie · Region Luzern &amp; Zentralschweiz</h1>
+        <p class="slogan">Built for the <span>drive.</span></p>
+        <p>Hochwertige Foto- und Videoinhalte für Autos und Motorräder. Auto- und Motorradfotograf aus Emmenbrücke, für die Region Luzern und die ganze Zentralschweiz.</p>
         <a class="button" href="#anfrage">SHOOTING ANFRAGEN <b>→</b></a>
       </div>
       <div class="scroll mono">SCROLL TO EXPLORE</div>
@@ -222,9 +252,20 @@
       </div>
     </section>
 
+    <!-- 3b REGION -->
+    <section class="section region" id="region">
+      <div class="eyebrow"><div><div class="mono">03 / Region</div><h2>Fotograf für Auto &amp; Motorrad in der Region Luzern.</h2></div><p>Basis in Emmenbrücke, Shootings in der ganzen Zentralschweiz.</p></div>
+      <p class="region-text">RPM Frame ist deine Adresse für Autofotografie und Motorrad-Fotoshootings in der Region Luzern. Meine Basis ist Emmenbrücke, fotografiert wird in den Kantonen Luzern, Zug, Schwyz, Nidwalden, Obwalden und Uri. Die Anfahrt bis 35 km ab Emmenbrücke ist inklusive. Den Ort besprechen wir gemeinsam, du kannst auch einen Wunschort vorschlagen.</p>
+      <div class="feat-grid">
+        <a class="feat feat-link" href="autofotografie-luzern.html"><div class="num">→</div><h3>Autofotografie Luzern</h3><p>Dein Auto an der passenden Location, mit gutem Licht und bearbeiteten Bildern.</p></a>
+        <a class="feat feat-link" href="motorrad-fotoshooting-zentralschweiz.html"><div class="num">→</div><h3>Motorrad-Fotoshooting Zentralschweiz</h3><p>Fotos und Reels für dein Bike, auf Wunsch mit dir als Fahrer.</p></a>
+        <a class="feat feat-link" href="fahrzeug-verkaufsfotos.html"><div class="num">→</div><h3>Verkaufsfotos für Auto &amp; Motorrad</h3><p>Saubere Bilder für dein Inserat, die Zustand und Details zeigen.</p></a>
+      </div>
+    </section>
+
     <!-- 4 PORTFOLIO -->
     <section class="section" id="portfolio">
-      <div class="eyebrow"><div><div class="mono">03 / Portfolio</div><h2>Zeig, was drin steckt.</h2></div><p>Autos, Motorräder und Details aus der Region. Tippe ein Bild an, um es gross zu sehen.</p></div>
+      <div class="eyebrow"><div><div class="mono">04 / Portfolio</div><h2>Zeig, was drin steckt.</h2></div><p>Autos, Motorräder und Details aus der Region. Tippe ein Bild an, um es gross zu sehen.</p></div>
       <div class="chips" role="group" aria-label="Portfolio filtern">
         <button class="chip" type="button" data-f="alle" aria-pressed="true">Alle</button>
         <button class="chip" type="button" data-f="autos" aria-pressed="false">Autos</button>
@@ -269,7 +310,7 @@
 
     <!-- 5 ANGEBOT -->
     <section class="section pricing" id="angebot">
-      <div class="eyebrow"><div><div class="mono">04 / Angebot</div><h2>Choose your shooting.</h2></div><p>Klar kalkuliert. Jedes Paket beinhaltet Auswahl, Bearbeitung und die fertige Übergabe deiner Inhalte.</p></div>
+      <div class="eyebrow"><div><div class="mono">05 / Angebot</div><h2>Choose your shooting.</h2></div><p>Klar kalkuliert. Jedes Paket beinhaltet Auswahl, Bearbeitung und die fertige Übergabe deiner Inhalte.</p></div>
       <div class="price-grid">
         <article class="price-card"><div class="mono">📸 Fotos</div><h3>Still in motion.</h3><ul><li><span>10 Bilder</span><span class="p"><b>CHF 90</b></span></li><li><span>15 Bilder</span><span class="p"><b>CHF 120</b></span></li><li><span>25 Bilder</span><span class="p"><b>CHF 160</b></span></li></ul></article>
         <article class="price-card"><div class="mono">🎥 Reels / TikToks</div><h3>Made to move.</h3><ul><li><span>1 Video</span><span class="p"><b>CHF 50</b></span></li><li><span>3 Videos</span><span class="p"><b>CHF 130</b></span></li><li><span>5 Videos</span><span class="p"><b>CHF 200</b></span></li></ul></article>
@@ -279,7 +320,7 @@
 
     <!-- 5b KUNDENSTIMMEN -->
     <section class="section reviews" id="stimmen">
-      <div class="eyebrow"><div><div class="mono">05 / Kundenstimmen</div><h2>Das sagen meine Kunden.</h2></div></div>
+      <div class="eyebrow"><div><div class="mono">06 / Kundenstimmen</div><h2>Das sagen meine Kunden.</h2></div></div>
       <div class="quotes">
         <figure class="quote"><blockquote>«Terminfindig isch unkompliziert verlofe, shooting allei isch sehr chillig gsi, Bilder sind wie gwünscht super worde. Sehr schnelli Usgab vom Material, im allgemeine top Arbeit»</blockquote><figcaption class="mono">@BlackBeast_560SEC</figcaption></figure>
         <figure class="quote"><blockquote>«Es isch e gueds und unkomplizierts shooting gsi. Die fertige ufnahme sin de hammer und es au sehr schnell gange bisi se bekoh ha. 10/10 experience gsi mit wiederholigsbedarf»</blockquote><figcaption class="mono">@dory.yzfr9</figcaption></figure>
@@ -289,9 +330,10 @@
 
     <!-- 5c FAQ -->
     <section class="section faq" id="faq">
-      <div class="eyebrow"><div><div class="mono">06 / FAQ</div><h2>Häufige Fragen.</h2></div></div>
+      <div class="eyebrow"><div><div class="mono">07 / FAQ</div><h2>Häufige Fragen.</h2></div></div>
       <div class="faq-list">
         <details><summary>Wie lange dauert ein Shooting?</summary><p>Je nach Aufwand und Umfang ca. 1,5 bis 2,5 Stunden.</p></details>
+        <details><summary>Fotografierst du auch in Luzern, Zug oder Schwyz?</summary><p>Ja, ich fotografiere in der ganzen Zentralschweiz, also auch in und um Luzern, Zug, Schwyz, Nidwalden, Obwalden und Uri. Basis ist Emmenbrücke, die Anfahrt bis 35 km ist inklusive.</p></details>
         <details><summary>Wo findet das Shooting statt?</summary><p>In der Zentralschweiz, den Ort besprechen wir gemeinsam. Gute Locations kenne ich, du kannst aber auch einen Wunschort vorschlagen.</p></details>
         <details><summary>Was kostet die Anfahrt?</summary><p>Die Anfahrt ist bis 35 km ab Emmenbrücke inklusive. Bei längeren Strecken verrechne ich CHF 0.50 pro zusätzlichem Kilometer (hin und zurück). Ich sage es dir vorher, nichts kommt überraschend.</p></details>
         <details><summary>Wie kann ich bezahlen?</summary><p>Per Twint oder bar, direkt nach dem Shooting.</p></details>
@@ -300,7 +342,7 @@
 
     <!-- 6 CTA -->
     <section class="section contact" id="anfrage">
-      <div><div class="mono">07 / Shooting anfragen</div><h2>Jetzt Shooting anfragen.</h2><p>Erzähl kurz von deinem Fahrzeug und deiner Idee. Ich melde mich mit den nächsten Schritten.</p><p class="mailline">Oder direkt per E-Mail:<br><a href="mailto:rpmframe.photo@gmail.com">rpmframe.photo@gmail.com</a></p><div class="contact-direct"><a class="button" href="https://wa.me/41778046758?text=Hallo%20Mike%2C%20ich%20interessiere%20mich%20f%C3%BCr%20ein%20Shooting." target="_blank" rel="noopener">PER WHATSAPP SCHREIBEN <b>↗</b></a><a class="button ghost" href="tel:+41778046758" aria-label="Anrufen: 077 804 67 58">077 804 67 58</a></div></div>
+      <div><div class="mono">08 / Shooting anfragen</div><h2>Jetzt Shooting anfragen.</h2><p>Erzähl kurz von deinem Fahrzeug und deiner Idee. Ich melde mich mit den nächsten Schritten.</p><p class="mailline">Oder direkt per E-Mail:<br><a href="mailto:rpmframe.photo@gmail.com">rpmframe.photo@gmail.com</a></p><div class="contact-direct"><a class="button" href="https://wa.me/41778046758?text=Hallo%20Mike%2C%20ich%20interessiere%20mich%20f%C3%BCr%20ein%20Shooting." target="_blank" rel="noopener">PER WHATSAPP SCHREIBEN <b>↗</b></a><a class="button ghost" href="tel:+41778046758" aria-label="Anrufen: 077 804 67 58">077 804 67 58</a></div></div>
       <form class="form" action="https://formspree.io/f/xbgdvpby" method="POST">
         <input type="hidden" name="_subject" value="Neue Shooting-Anfrage – RPM_Frame">
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
@@ -324,7 +366,7 @@
   <div class="stick" id="stick"><a class="button" href="#anfrage">SHOOTING ANFRAGEN <b>→</b></a><a class="wa" href="https://wa.me/41778046758?text=Hallo%20Mike%2C%20ich%20interessiere%20mich%20f%C3%BCr%20ein%20Shooting." target="_blank" rel="noopener" aria-label="Per WhatsApp schreiben"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.65-4.9A9 9 0 1 1 8 19.4L3 21z"/><path d="M9.2 8.2c-.3 2.9 3.4 6.6 6.6 6.6l1.2-1.5-2.1-1.1-.9.7c-.9-.4-1.9-1.4-2.3-2.3l.7-.9-1.1-2.1-1.1.6z"/></svg></a></div>
 
   <footer>
-    <div class="f-left"><a class="logo" href="#home" aria-label="RPM Frame Startseite"><img class="brand-logo" src="assets/images/logo-rpm-frame-light.png" alt="RPM Frame" width="90" height="50"></a><p>Automotive Photography &amp; Videography<br>Zentralschweiz</p><p><a class="f-mail" href="mailto:rpmframe.photo@gmail.com">rpmframe.photo@gmail.com</a></p><p class="f-legal"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></p></div>
+    <div class="f-left"><a class="logo" href="#home" aria-label="RPM Frame Startseite"><img class="brand-logo" src="assets/images/logo-rpm-frame-light.png" alt="RPM Frame" width="90" height="50"></a><p>Auto- &amp; Motorradfotografie<br>Emmenbrücke · Region Luzern &amp; Zentralschweiz</p><p><a class="f-mail" href="mailto:rpmframe.photo@gmail.com">rpmframe.photo@gmail.com</a><br><a class="f-mail" href="tel:+41778046758">077 804 67 58</a></p><p class="f-legal"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></p><p class="f-legal f-services"><a href="autofotografie-luzern.html">Autofotografie</a><a href="motorrad-fotoshooting-zentralschweiz.html">Motorrad-Fotoshooting</a><a href="fahrzeug-verkaufsfotos.html">Verkaufsfotos</a><a href="reels-tiktok-auto.html">Reels &amp; TikToks</a></p><p class="f-legal f-services"><a href="#angebot">Preise</a><a href="#faq">FAQ</a><a href="#anfrage">Anfrage</a></p></div>
     <a class="credit" href="https://localboost-zs.ch" target="_blank" rel="noopener" aria-label="Created by LocalBoost"><span class="mono">Created by</span><img src="assets/images/localboost-zentralschweiz-white.png" alt="LocalBoost Zentralschweiz" width="170" height="54" loading="lazy"></a>
     <div class="footer-side"><div class="social"><a href="https://instagram.com/rpm_frame" target="_blank" rel="noopener" aria-label="Instagram @rpm_frame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/></svg></a><a href="https://tiktok.com/@rpm_frame" target="_blank" rel="noopener" aria-label="TikTok @rpm_frame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.6 2.2 4.4 5 4.6"/></svg></a><a href="https://wa.me/41778046758?text=Hallo%20Mike%2C%20ich%20interessiere%20mich%20f%C3%BCr%20ein%20Shooting." target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.65-4.9A9 9 0 1 1 8 19.4L3 21z"/><path d="M9.2 8.2c-.3 2.9 3.4 6.6 6.6 6.6l1.2-1.5-2.1-1.1-.9.7c-.9-.4-1.9-1.4-2.3-2.3l.7-.9-1.1-2.1-1.1.6z"/></svg></a></div><div class="mono">© 2026 RPM_Frame</div></div>
   </footer>
